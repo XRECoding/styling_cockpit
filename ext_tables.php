@@ -8,7 +8,7 @@ defined('TYPO3') || die();
         'backend',
         '',
         [
-            \Zimk\stylingcockpit\Controller\AjaxController::class => 'list, show',
+            \Zimk\stylingcockpit\Controller\AjaxController::class => 'index',
         ],
         [
             'access' => 'user,group',

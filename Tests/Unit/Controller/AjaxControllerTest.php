@@ -12,7 +12,7 @@ use TYPO3Fluid\Fluid\View\ViewInterface;
 /**
  * Test case
  *
- * @author Daniel Kuhn 
+ * @author Daniel Kuhn
  */
 class AjaxControllerTest extends UnitTestCase
 {
@@ -44,7 +44,7 @@ class AjaxControllerTest extends UnitTestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $ajaxRepository = $this->getMockBuilder(\::class)
+        $ajaxRepository = $this->getMockBuilder(\Zimk\StylingCockpit\Domain\Repository\TestRepository::class)
             ->onlyMethods(['findAll'])
             ->disableOriginalConstructor()
             ->getMock();

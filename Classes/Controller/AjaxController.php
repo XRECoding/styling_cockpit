@@ -14,6 +14,7 @@ namespace Zimk\stylingcockpit\Controller;
  * (c) 2022 Daniel Kuhn
  */
 
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -28,8 +29,96 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function listAction(): \Psr\Http\Message\ResponseInterface
+    public function indexAction(): \Psr\Http\Message\ResponseInterface
     {
+        $PageTSconfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($this->pObj->id);
+        $websiteID = $PageTSconfig['TSFE.']['constants.']['websiteConfig.'];
+
+        // $this->view->assign('pageTsConfig', BackendUtility::getPagesTSconfig(1)['mod.']['web_layout.']);
+        // $this->view->assign('rootLine', $rootlinePages);
+
+        // ******************************************************
+
+        $test = "homepage1";
+        $homepageArray = array();
+        $gridArray = array();
+
+        $homepageOptions = array();
+        $gridOptions = array();
+
+
+
+        $layouts = BackendUtility::getPagesTSconfig(1)["mod."]["web_layout."]["BackendLayouts."];
+
+        foreach($layouts as $key => $value) {
+            // echo explode(".", $key)[0]."<br>";
+            $keyus = explode(".", $key)[0];
+
+            $testLayout = "<div id='".$keyus."' style='visibility: collapse; padding: 0;'>";
+            $heightCounter = count($value["config."]["backend_layout."]["rows."]) -2;
+
+            if (!str_contains($key, "homepage")) {
+                $testLayout .= "<div style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                $heightCounter += 2;
+                array_push($gridOptions, $keyus);
+            } else {
+                array_push($homepageOptions, $keyus);
+            }
+
+            foreach ($value["config."]["backend_layout."]["rows."] as $layout) {
+                $mar = explode("-", $key);
+                $zahl = 1;
+
+                foreach ($layout["columns."] as $sub) {
+                    $a = (count($layout["columns."]) !== 1) ? 'display: inline-block;' : '';
+                    $b = (count($mar) == 1) ? 1 : ((int)$mar[$zahl++]) / 100;
+                    $c = (str_contains($key, "homepage")) ? 1 / count($layout["columns."]) : $b;
+
+
+                    $testKilian = explode(".", $sub['name']);
+                    $testKilian2 = explode(".", $sub['name']);
+                    $testKilian3 = explode(".", $sub['name']);
+
+                    if (end($testKilian) == "header") {
+                        $testLayout .= "<div style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                    } else if (end($testKilian2) == "footer") {
+                        $testLayout .= "<div style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+                    } else {
+                        $testLayout .= "<div style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".end($testKilian3)."</div>";
+                    }
+
+
+
+                }
+
+            }
+
+            if (!str_contains($key, "homepage")) {
+                $testLayout .= "<div style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+            }
+            $testLayout .= "</div>";
+
+            if (!str_contains($key, "homepage")) {
+                array_push($gridArray, $testLayout);
+                // $gridArray += array($testLayout);
+            } else {
+                array_push($homepageArray, $testLayout);
+
+                // $homepageArray += array($testLayout);
+            }
+
+            // echo "<pre>".print_r($gridArray)."</pre>";
+
+        }
+        $this->view->assign("homepageArray", $homepageArray);
+        $this->view->assign("gridArray", $gridArray);
+        $this->view->assign("homepageOptions", $homepageOptions);
+        $this->view->assign("gridOptions", $gridOptions);
+
+
+
+        // ******************************************************
+
         return $this->htmlResponse();
     }
 
@@ -55,7 +144,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         fwrite($file, "test");
         fclose($file);
         */
-        
+
 
         // works but cant use absolute path
         /*
