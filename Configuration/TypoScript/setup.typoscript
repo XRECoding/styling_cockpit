@@ -1,0 +1,15 @@
+
+# Module configuration
+module.tx_stylingcockpit_web_stylingcockpitbackend {
+    persistence {
+        storagePid = {$module.tx_stylingcockpit_backend.persistence.storagePid}
+    }
+    view {
+        templateRootPaths.0 = EXT:styling_cockpit/Resources/Private/Backend/Templates/
+        templateRootPaths.1 = {$module.tx_stylingcockpit_backend.view.templateRootPath}
+        partialRootPaths.0 = EXT:styling_cockpit/Resources/Private/Backend/Partials/
+        partialRootPaths.1 = {$module.tx_stylingcockpit_backend.view.partialRootPath}
+        layoutRootPaths.0 = EXT:styling_cockpit/Resources/Private/Backend/Layouts/
+        layoutRootPaths.1 = {$module.tx_stylingcockpit_backend.view.layoutRootPath}
+    }
+}

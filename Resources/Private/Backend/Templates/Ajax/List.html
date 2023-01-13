@@ -1,0 +1,21 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+<f:section name="Buttons">
+    <be:moduleLayout.button.linkButton
+        icon="actions-add"
+        title="{f:translate(id: 'LLL:EXT:backend/Resources/Private/Language/locallang_layout.xlf:newRecordGeneral')}"
+        link="{f:uri.action(controller: 'Ajax', action: 'new')}"
+    />
+</f:section>
+
+<f:section name="Content">
+    <f:asset.script identifier="stylingcockpitBackendJs" src="EXT:styling_cockpit/Resources/Public/JavaScript/Backend.js" />
+    <h1>Listing for Ajax</h1>
+
+    <f:link.action action="new" class="btn btn-default stylingcockpit">Test Ajax</f:link.action>
+</f:section>
+</html>

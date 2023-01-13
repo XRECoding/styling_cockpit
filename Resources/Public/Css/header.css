@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+/*
+div .page {
+    margin: 0;
+    padding: 0;
+
+}
+ */
+
+div.site-header {
+    /*background-color: #ddeef2;*/
+    background-color: whitesmoke;
+    color: #282828;
+    max-width: none;
+    margin: 0;
+    height: max-content;
+    padding-top: 10px;
+}
+
+div .header-content {
+    max-width: 100rem;
+    width: 80%;
+    margin: auto;
+
+}
+
+div .header-content .grid3Spalten {
+
+}
+
+div .header-content img {
+    max-height: 10rem;
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width: 599px) {
+    /*.site-header {
+        position: sticky;
+    }*/
+
+    div.header-content {
+        /*width: 100%;*/
+        width: auto;
+        margin: auto;
+        padding: 0 20px;
+
+    }
+
+}

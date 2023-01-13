@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:styling_cockpit/Resources/Private/Language/locallang_csh_tx_stylingcockpit_domain_model_ajax.xlf" date="2022-12-21T09:26:02Z" product-name="styling_cockpit">
+		<header/>
+		<body>
+			<trans-unit id="name.description" resname="name.description">
+				<source>name</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

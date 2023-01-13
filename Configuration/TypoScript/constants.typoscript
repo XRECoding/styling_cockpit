@@ -1,0 +1,15 @@
+
+module.tx_stylingcockpit_backend {
+    view {
+        # cat=module.tx_stylingcockpit_backend/file; type=string; label=Path to template root (BE)
+        templateRootPath = EXT:styling_cockpit/Resources/Private/Backend/Templates/
+        # cat=module.tx_stylingcockpit_backend/file; type=string; label=Path to template partials (BE)
+        partialRootPath = EXT:styling_cockpit/Resources/Private/Backend/Partials/
+        # cat=module.tx_stylingcockpit_backend/file; type=string; label=Path to template layouts (BE)
+        layoutRootPath = EXT:styling_cockpit/Resources/Private/Backend/Layouts/
+    }
+    persistence {
+        # cat=module.tx_stylingcockpit_backend//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
