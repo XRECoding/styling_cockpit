@@ -10,16 +10,19 @@ var lastHomepage = firstHomepageChild.id;
 firstGridChild.style.visibility = "visible";
 var lastGrid = firstGridChild.id;
 
-
-
 document.getElementById("color-picker").addEventListener("change", function(event){
     colorPickerValue = event.target.value;
 });
 
+function onClick(div) {
+    console.log(div.id, div.innerHTML, colorPickerValue);
+    // document.getElementById(div.id).style.backgroundColor = colorPickerValue;
+    div.style.backgroundColor = colorPickerValue; 
+}
+
 function alertColor(){
     alert(colorPickerValue.toString());
 }
-
 
 function changeHomepage() {
     var e = document.getElementById("homepageOption");
