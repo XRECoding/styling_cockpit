@@ -58,7 +58,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $heightCounter = count($value["config."]["backend_layout."]["rows."]) -2;
 
             if (!str_contains($key, "homepage")) {
-                $testLayout .= "<div id='header' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                $testLayout .= "<div id='".$keyus."_header' name='header' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>header</div>";
                 $heightCounter += 2;
                 array_push($gridOptions, $keyus);
             } else {
@@ -78,9 +78,9 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     $testKilian = end(explode(".", $sub['name']));
 
                     if ($testKilian == "header") {
-                        $testLayout .= "<div id='header' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                        $testLayout .= "<div id='".$keyus."_header' name='header' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>header</div>";
                     } else if ($testKilian == "footer") {
-                        $testLayout .= "<div id='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+                        $testLayout .= "<div id='".$keyus."footer' name='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
                     } else {
                         $testLayout .= "<div id='".$keyus."_".$testKilian."' onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$testKilian."</div>";
                     }
@@ -89,7 +89,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
 
             if (!str_contains($key, "homepage")) {
-                $testLayout .= "<div id='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+                $testLayout .= "<div id='".$keyus."_footer' name='footer' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>footer</div>";
             }
             $testLayout .= "</div>";
 

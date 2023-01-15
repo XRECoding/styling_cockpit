@@ -15,9 +15,21 @@ document.getElementById("color-picker").addEventListener("change", function(even
 });
 
 function onClick(div) {
-    console.log(div.id, div.innerHTML, colorPickerValue);
-    // document.getElementById(div.id).style.backgroundColor = colorPickerValue;
-    div.style.backgroundColor = colorPickerValue; 
+    if (div.getAttribute("name") == "header") {
+        var elms = document.querySelectorAll("[name='header']");
+        for (var i = 0; i < elms.length; i++) 
+            elms[i].style.backgroundColor=colorPickerValue;
+
+    } else if (div.getAttribute("name") == "footer") {
+        var elms = document.querySelectorAll("[name='footer']");
+        for (var i = 0; i < elms.length; i++) 
+            elms[i].style.backgroundColor=colorPickerValue;
+            
+    } else {
+        div.style.backgroundColor = colorPickerValue; 
+    }
+
+    console.log(div.id, "name: ", div.getAttribute("name"), div.innerHTML, colorPickerValue);
 }
 
 function alertColor(){
