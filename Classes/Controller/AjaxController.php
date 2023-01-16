@@ -19,6 +19,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+
 /**
  * AjaxController
  */
@@ -118,6 +121,25 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
         // ******************************************************
+        // getting the background color for div elements
+        // TODO change filepath from absolute to relative
+        // header
+        $fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/header.css");
+        $headerStart = strpos($fileString, "div.site-header");
+        $colorSelector = strpos($fileString, "background-color:", $headerStart);
+        $colorStart = strpos($fileString, " ", $colorSelector)+1;
+        $colorEnd = strpos($fileString, ";", $colorStart);
+
+        $headerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
+
+        //footer
+        $fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/footer.css");
+        $footerStart = strpos($fileString, "div.site-footer");
+        $colorSelector = strpos($fileString, "background-color:", $footerStart);
+        $colorStart = strpos($fileString, " ", $colorSelector)+1;
+        $colorEnd = strpos($fileString, ";", $colorStart);
+
+        $footerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
         return $this->htmlResponse();
     }
@@ -145,16 +167,55 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         fclose($file);
         */
 
+        /*
+        $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
+        $defaultStorage = $storageRepository->getDefaultStorage();
+        $folder = $defaultStorage->getFolder('EXT:styling_cockpit/resources/public/css');
+        $file = $folder->getStorage()->getFileInFolder("test.txt", $folder);
+
+        fwrite($file,"test");
+        fclose($file);
+        */
 
         // works but cant use absolute path
         /*
-        $file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/test.txt", "w");
+        $file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/header.css", "r");
         fwrite($file, "test");
         fclose($file);
         */
 
+        // TODO change filepath from absolute to relative
+        //edit header background color
+        $fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/header.css");
+        $headerStart = strpos($fileString, "div.site-header");
+        $colorSelector = strpos($fileString, "background-color:", $headerStart);
+        $colorStart = strpos($fileString, " ", $colorSelector)+1;
+        $colorEnd = strpos($fileString, ";", $colorStart);
 
-        $data = ['result' => 'my stuff'];
+        $file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/test.txt", "w");
+        fwrite($file, substr($fileString, 0, $colorStart));
+        fwrite($file, "color");     // TODO
+        fwrite($file, substr($fileString, $colorEnd));
+        fclose($file);
+
+        //edit footer background color
+        $fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/footer.css");
+        $footerStart = strpos($fileString, "div.site-footer");
+        $colorSelector = strpos($fileString, "background-color:", $footerStart);
+        $colorStart = strpos($fileString, " ", $colorSelector)+1;
+        $colorEnd = strpos($fileString, ";", $colorStart);
+
+        $file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/test.txt", "w");
+        fwrite($file, substr($fileString, 0, $colorStart));
+        fwrite($file, "color");     // TODO
+        fwrite($file, substr($fileString, $colorEnd));
+        fclose($file);
+
+
+
+
+
+        $data = ['result' => 'pls work'];
         return $this->jsonResponse(json_encode($data));
     }
 }
