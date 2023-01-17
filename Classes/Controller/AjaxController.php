@@ -58,7 +58,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $heightCounter = count($value["config."]["backend_layout."]["rows."]) -2;
 
             if (!str_contains($key, "homepage")) {
-                $testLayout .= "<div style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                $testLayout .= "<div id='".$keyus."_header' name='header' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>header</div>";
                 $heightCounter += 2;
                 array_push($gridOptions, $keyus);
             } else {
@@ -75,39 +75,29 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     $c = (str_contains($key, "homepage")) ? 1 / count($layout["columns."]) : $b;
 
 
-                    $testKilian = explode(".", $sub['name']);
-                    $testKilian2 = explode(".", $sub['name']);
-                    $testKilian3 = explode(".", $sub['name']);
+                    $testKilian = end(explode(".", $sub['name']));
 
-                    if (end($testKilian) == "header") {
-                        $testLayout .= "<div style='height: 20%; width:100%; border: 1px solid black'>header</div>";
-                    } else if (end($testKilian2) == "footer") {
-                        $testLayout .= "<div style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+                    if ($testKilian == "header") {
+                        $testLayout .= "<div id='".$keyus."_header' name='header' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                    } else if ($testKilian == "footer") {
+                        $testLayout .= "<div id='".$keyus."footer' name='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
                     } else {
-                        $testLayout .= "<div style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".end($testKilian3)."</div>";
+                        $testLayout .= "<div id='".$keyus."_".$testKilian."' name=".$keyus."_".$testKilian." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$testKilian."</div>";
                     }
-
-
-
                 }
 
             }
 
             if (!str_contains($key, "homepage")) {
-                $testLayout .= "<div style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+                $testLayout .= "<div id='".$keyus."_footer' name='footer' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>footer</div>";
             }
             $testLayout .= "</div>";
 
             if (!str_contains($key, "homepage")) {
                 array_push($gridArray, $testLayout);
-                // $gridArray += array($testLayout);
             } else {
                 array_push($homepageArray, $testLayout);
-
-                // $homepageArray += array($testLayout);
             }
-
-            // echo "<pre>".print_r($gridArray)."</pre>";
 
         }
         $this->view->assign("homepageArray", $homepageArray);
