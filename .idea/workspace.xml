@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" afterDir="false" />
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="Implemented Layout">
+      <change afterPath="$PROJECT_DIR$/Resources/Public/Css/footer.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Private/Backend/Layouts/Default.html" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Private/Backend/Layouts/Default.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Public/Css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/Css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Public/Css/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/Css/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Unit/Controller/AjaxControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Unit/Controller/AjaxControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ext_tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/ext_tables.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +44,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2KH8TN4qyYNd09nnMrP49NB09yk" />
@@ -39,9 +61,14 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Dokumente\XAMPP\htdocs\Studienprojekt\typo3conf\ext\styling_cockpit\Resources\Public\Css" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -52,27 +79,51 @@
       <option name="presentableId" value="Default" />
       <updated>1673620156010</updated>
       <workItem from="1673620157811" duration="15000" />
-      <workItem from="1673620175263" duration="5465000" />
+      <workItem from="1673620175263" duration="7348000" />
+      <workItem from="1673855675115" duration="6059000" />
+      <workItem from="1673884628143" duration="4161000" />
     </task>
+    <task id="LOCAL-00001" summary="Implemented Layout">
+      <created>1673629991202</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673629991203</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="Implemented Layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Layout" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620437066" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1673620171707">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1673886469981">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1673620171707" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1673886469981" />
     <state x="1146" y="598" key="Github.ShareDialog" timestamp="1673620331426">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -81,10 +132,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="994" y="405" key="Github.UntrackedFilesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620341000" />
-    <state x="781" y="345" key="SettingsEditor" timestamp="1673628723127">
+    <state x="781" y="345" key="SettingsEditor" timestamp="1673630345379">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1673628723127" />
+    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1673630345379" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1673630001520">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1673630001520" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1673628204397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

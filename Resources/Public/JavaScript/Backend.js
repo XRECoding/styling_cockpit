@@ -70,13 +70,20 @@ function changeGrid() {
 }
 
 require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
-    // Generate a random number between 1 and 32
-    const randomNumber = Math.ceil(Math.random() * 32);
-    new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
-        .withQueryArguments({input: 1})
-        .get()
-        .then(async function (response) {
-            const resolved = await response.resolve();
-            console.log(resolved.result);
-        });
+    var saveButton = document.getElementsByClassName("testButton");
+    let writeCSS = function (element){
+        new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
+            .withQueryArguments({input: 1})
+            .get()
+            .then(async function (response) {
+                const resolved = await response.resolve();
+                console.log(resolved.result);
+            });
+    }
+
+    for (let i = 0; i < saveButton.length; i++) {
+        saveButton[i].addEventListener('click', writeCSS, false);
+    }
+
+
 });
