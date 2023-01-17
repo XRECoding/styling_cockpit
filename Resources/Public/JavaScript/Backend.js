@@ -4,6 +4,8 @@ let firstHomepageChild = document.getElementById("homepage").firstElementChild;
 let firstGridChild = document.getElementById("grid").firstElementChild;
 const coloreMap = new Map();
 
+coloreMap.set("header", document.getElementById("homepage1_header").style.backgroundColor);
+coloreMap.set("footer", document.getElementById("homepage1footer").style.backgroundColor);
 
 firstHomepageChild.style.visibility = "visible";
 var lastHomepage = firstHomepageChild.id;
@@ -69,11 +71,15 @@ function changeGrid() {
     lastGrid = currentGrid;
 }
 
+
+
+
 require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
     var saveButton = document.getElementsByClassName("testButton");
     let writeCSS = function (element){
+        const arr = Array.from(coloreMap);
         new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
-            .withQueryArguments({input: 1})
+            .withQueryArguments({colorArray: arr})
             .get()
             .then(async function (response) {
                 const resolved = await response.resolve();
@@ -84,6 +90,4 @@ require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
     for (let i = 0; i < saveButton.length; i++) {
         saveButton[i].addEventListener('click', writeCSS, false);
     }
-
-
 });

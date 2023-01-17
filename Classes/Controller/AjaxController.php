@@ -50,6 +50,28 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $gridOptions = array();
 
 
+        // getting the background color for div elements
+        // TODO change filepath from absolute to relative
+        // header
+        //$fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/header.css");
+        $fileString = file_get_contents("EXT:typo3_template_baukasten/Resources/Public/Css/header.css");
+        $headerStart = strpos($fileString, "div.site-header");
+        $colorSelector = strpos($fileString, "background-color:", $headerStart);
+        $color2nd = strpos($fileString, "background-color:", $colorSelector+1);
+        $colorStart = strpos($fileString, " ", $color2nd)+1;
+        $colorEnd = strpos($fileString, ";", $colorStart);
+
+        $headerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
+
+        //footer
+        //$fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/footer.css");
+        $fileString = file_get_contents("EXT:typo3_template_baukasten/Resources/Public/Css/footer.css");
+        $footerStart = strpos($fileString, "div.site-footer");
+        $colorSelector = strpos($fileString, "background-color:", $footerStart);
+        $colorStart = strpos($fileString, " ", $colorSelector)+1;
+        $colorEnd = strpos($fileString, ";", $colorStart);
+
+        $footerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
         $layouts = BackendUtility::getPagesTSconfig(1)["mod."]["web_layout."]["BackendLayouts."];
 
@@ -81,9 +103,9 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     $testKilian = end(explode(".", $sub['name']));
 
                     if ($testKilian == "header") {
-                        $testLayout .= "<div id='".$keyus."_header' name='header' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                        $testLayout .= "<div id='".$keyus."_header' name='header' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: ".$headerColor."'>header</div>";
                     } else if ($testKilian == "footer") {
-                        $testLayout .= "<div id='".$keyus."footer' name='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+                        $testLayout .= "<div id='".$keyus."footer' name='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: ".$footerColor."'>footer</div>";
                     } else {
                         $testLayout .= "<div id='".$keyus."_".$testKilian."' name=".$keyus."_".$testKilian." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$testKilian."</div>";
                     }
@@ -111,25 +133,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
         // ******************************************************
-        // getting the background color for div elements
-        // TODO change filepath from absolute to relative
-        // header
-        $fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/header.css");
-        $headerStart = strpos($fileString, "div.site-header");
-        $colorSelector = strpos($fileString, "background-color:", $headerStart);
-        $colorStart = strpos($fileString, " ", $colorSelector)+1;
-        $colorEnd = strpos($fileString, ";", $colorStart);
 
-        $headerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
-
-        //footer
-        $fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/footer.css");
-        $footerStart = strpos($fileString, "div.site-footer");
-        $colorSelector = strpos($fileString, "background-color:", $footerStart);
-        $colorStart = strpos($fileString, " ", $colorSelector)+1;
-        $colorEnd = strpos($fileString, ";", $colorStart);
-
-        $footerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
         return $this->htmlResponse();
     }
@@ -174,33 +178,47 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         fclose($file);
         */
 
+
+        //get the ajax inputs
+        $colorArray = $request->getQueryParams()['colorArray'] ?? null;
+
+        $headerColor = $colorArray[0][1];
+        $footerColor = $colorArray[1][1];
+
+
         // TODO change filepath from absolute to relative
         //edit header background color
-        $fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/header.css");
+        //$fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/header.css");
+        $fileString = file_get_contents("EXT:typo3_template_baukasten/Resources/Public/Css/header.css");
         $headerStart = strpos($fileString, "div.site-header");
         $colorSelector = strpos($fileString, "background-color:", $headerStart);
-        $colorStart = strpos($fileString, " ", $colorSelector)+1;
+        $color2nd = strpos($fileString, "background-color:", $colorSelector+1);
+        $colorStart = strpos($fileString, " ", $color2nd)+1;
         $colorEnd = strpos($fileString, ";", $colorStart);
 
-        $file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/test.txt", "w");
+        //$file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/header.css", "w");
+        $file = fopen("EXT:typo3_template_baukasten/Resources/Public/Css/header.css", "w");
         fwrite($file, substr($fileString, 0, $colorStart));
-        fwrite($file, "color");     // TODO
+        fwrite($file, $headerColor);
         fwrite($file, substr($fileString, $colorEnd));
         fclose($file);
 
         //edit footer background color
-        $fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/footer.css");
+
+
+        //$fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/footer.css");
+        $fileString = file_get_contents("EXT:typo3_template_baukasten/Resources/Public/Css/footer.css");
         $footerStart = strpos($fileString, "div.site-footer");
         $colorSelector = strpos($fileString, "background-color:", $footerStart);
         $colorStart = strpos($fileString, " ", $colorSelector)+1;
         $colorEnd = strpos($fileString, ";", $colorStart);
 
-        $file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/test.txt", "w");
+        //$file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/footer.css", "w");
+        $file = fopen("EXT:typo3_template_baukasten/Resources/Public/Css/footer.css", "w");
         fwrite($file, substr($fileString, 0, $colorStart));
-        fwrite($file, "color");     // TODO
+        fwrite($file, $footerColor);
         fwrite($file, substr($fileString, $colorEnd));
         fclose($file);
-
 
 
 

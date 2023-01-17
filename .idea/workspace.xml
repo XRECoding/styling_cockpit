@@ -19,8 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="Implemented Layout">
-      <change afterPath="$PROJECT_DIR$/Resources/Public/Css/footer.css" afterDir="false" />
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="Implemented:&#10;-Read Color from CSS File&#10;-Write Color to CSS File">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Public/Css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/Css/header.css" afterDir="false" />
@@ -46,7 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Read_and_Write_CSS" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -81,7 +80,9 @@
       <workItem from="1673620157811" duration="15000" />
       <workItem from="1673620175263" duration="7348000" />
       <workItem from="1673855675115" duration="6059000" />
-      <workItem from="1673884628143" duration="4161000" />
+      <workItem from="1673884628143" duration="4378000" />
+      <workItem from="1673891028401" duration="2337000" />
+      <workItem from="1673965598642" duration="12815000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented Layout">
       <created>1673629991202</created>
@@ -90,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673629991203</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented:&#10;-Read Color from CSS File&#10;-Write Color to CSS File">
+      <created>1673890228344</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673890228344</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,17 +121,18 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Implemented Layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Layout" />
+    <MESSAGE value="Implemented:&#10;-Read Color from CSS File&#10;-Write Color to CSS File" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented:&#10;-Read Color from CSS File&#10;-Write Color to CSS File" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620437066" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1673886469981">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1673979345057">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1673886469981" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1673979345057" />
     <state x="1146" y="598" key="Github.ShareDialog" timestamp="1673620331426">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -132,14 +141,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="994" y="405" key="Github.UntrackedFilesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620341000" />
-    <state x="781" y="345" key="SettingsEditor" timestamp="1673630345379">
+    <state x="781" y="345" key="SettingsEditor" timestamp="1673892777863">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1673630345379" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1673630001520">
+    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1673892777863" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1673890239853">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1673630001520" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1673890239853" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1673628204397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
