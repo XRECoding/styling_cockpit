@@ -2,6 +2,7 @@
 var colorPickerValue =  document.getElementById("color-picker").getAttribute('value');
 let firstHomepageChild = document.getElementById("homepage").firstElementChild;
 let firstGridChild = document.getElementById("grid").firstElementChild;
+const coloreMap = new Map();
 
 
 firstHomepageChild.style.visibility = "visible";
@@ -13,6 +14,7 @@ var lastGrid = firstGridChild.id;
 document.getElementById("color-picker").addEventListener("change", function(event){
     colorPickerValue = event.target.value;
 });
+
 
 function onClick(div) {
     if (div.getAttribute("name") == "header") {
@@ -29,7 +31,10 @@ function onClick(div) {
         div.style.backgroundColor = colorPickerValue; 
     }
 
-    console.log(div.id, "name: ", div.getAttribute("name"), div.innerHTML, colorPickerValue);
+    coloreMap.set(div.getAttribute("name"), colorPickerValue);
+
+    // console.log(...coloreMap.entries());
+    // console.log(coloreMap.size)
 }
 
 function alertColor(){

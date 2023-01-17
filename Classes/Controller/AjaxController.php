@@ -82,7 +82,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     } else if ($testKilian == "footer") {
                         $testLayout .= "<div id='".$keyus."footer' name='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
                     } else {
-                        $testLayout .= "<div id='".$keyus."_".$testKilian."' onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$testKilian."</div>";
+                        $testLayout .= "<div id='".$keyus."_".$testKilian."' name=".$keyus."_".$testKilian." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$testKilian."</div>";
                     }
                 }
 
