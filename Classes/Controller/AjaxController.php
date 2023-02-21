@@ -100,6 +100,9 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
 
         }
+
+        // echo (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('id'); // return side id
+
         $this->view->assign("homepageArray", $homepageArray);
         $this->view->assign("gridArray", $gridArray);
         $this->view->assign("homepageOptions", $homepageOptions);
