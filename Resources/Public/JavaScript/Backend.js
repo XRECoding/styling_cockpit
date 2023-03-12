@@ -26,11 +26,11 @@ function onClick(div) {
 
     } else if (div.getAttribute("name") == "footer") {
         var elms = document.querySelectorAll("[name='footer']");
-        for (var i = 0; i < elms.length; i++) 
+        for (var i = 0; i < elms.length; i++)
             elms[i].style.backgroundColor=colorPickerValue;
             
     } else {
-        div.style.backgroundColor = colorPickerValue; 
+        div.style.backgroundColor = colorPickerValue;
     }
 
     coloreMap.set(div.getAttribute("name"), colorPickerValue);

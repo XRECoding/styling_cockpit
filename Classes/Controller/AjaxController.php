@@ -23,6 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\PathUtility;
 
+
 /**
  * AjaxController
  */
@@ -38,8 +39,6 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $PageTSconfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($this->pObj->id);
         $websiteID = $PageTSconfig['TSFE.']['constants.']['websiteConfig.'];
 
-        // $this->view->assign('pageTsConfig', BackendUtility::getPagesTSconfig(1)['mod.']['web_layout.']);
-        // $this->view->assign('rootLine', $rootlinePages);
 
         // ******************************************************
 
@@ -55,21 +54,15 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // TODO change filepath from absolute to relative
         // header
         $fileString = file_get_contents(dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/header.css");
-        //$fileString = file_get_contents(__DIR__ . PathUtility::getPublicResourceWebPath('EXT:typo3_template_baukasten/Resources/Public/Css/header.css'));
-        //echo PathUtility::getPublicResourceWebPath('EXT:typo3_template_baukasten/Resources/Public/Css/header.css');
-        //$fileString = file_get_contents("EXT:typo3_template_baukasten/Resources/Public/Css/header.css");
         $headerStart = strpos($fileString, "div.site-header");
         $colorSelector = strpos($fileString, "background-color:", $headerStart);
-        $color2nd = strpos($fileString, "background-color:", $colorSelector+1);
-        $colorStart = strpos($fileString, " ", $color2nd)+1;
+        $colorStart = strpos($fileString, " ", $colorSelector)+1;
         $colorEnd = strpos($fileString, ";", $colorStart);
 
         $headerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
         //footer
         $fileString = file_get_contents(dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/footer.css");
-        //$fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/footer.css");
-        //$fileString = file_get_contents("EXT:typo3_template_baukasten/Resources/Public/Css/footer.css");
         $footerStart = strpos($fileString, "div.site-footer");
         $colorSelector = strpos($fileString, "background-color:", $footerStart);
         $colorStart = strpos($fileString, " ", $colorSelector)+1;
@@ -135,100 +128,252 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->view->assign("gridOptions", $gridOptions);
 
 
+        /*
+        $pid = intVal($_GET['id']);
+        $page = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Domain\\Repository\\PageRepository');
 
-        // ******************************************************
+        echo "<pre>";
+        print_r($page);
+        echo "</pre>";
+        */
 
 
         return $this->htmlResponse();
     }
 
+
+    /**
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function doSomethingAction(ServerRequestInterface $request): ResponseInterface
     {
-
-        /*
-        $extPath = ExtensionManagementUtility::siteRelPath(
-            $this->request->getControllerExtensionKey()
-        );
-
-        $extCss = $extPath . 'Resources/Public/Css/test.txt';
-
-        $file = fopen($extCss, "w");
-        fwrite($file, "test");
-        fclose($file);
-        */
-
-
-        // doesnt work
-        /*
-        $file = fopen("EXT:styling_cockpit/Resources/Public/Css/test.txt", "w");
-        fwrite($file, "test");
-        fclose($file);
-        */
-
-        /*
-        $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
-        $defaultStorage = $storageRepository->getDefaultStorage();
-        $folder = $defaultStorage->getFolder('EXT:styling_cockpit/resources/public/css');
-        $file = $folder->getStorage()->getFileInFolder("test.txt", $folder);
-
-        fwrite($file,"test");
-        fclose($file);
-        */
-
-        // works but cant use absolute path
-        /*
-        $file = fopen("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/styling_cockpit/Resources/Public/Css/header.css", "r");
-        fwrite($file, "test");
-        fclose($file);
-        */
-
-
         //get the ajax inputs
         $colorArray = $request->getQueryParams()['colorArray'] ?? null;
 
+        // split all the colors from the colorArray
         $headerColor = $colorArray[0][1];
         $footerColor = $colorArray[1][1];
 
+        $hp2MainContentColor = "#fafafa"; // TODO
+        $hp1MainContentColor = "#fafafa"; // TODO
+        $_1ColumnContentColor = "#fafafa"; // TODO
+        $_50_50_left_ContentColor = "#fafafa"; // TODO
+        $_50_50_right_ContentColor = "#fafafa"; // TODO
+        $_30_70_left_ContentColor = "#fafafa"; // TODO
+        $_30_70_right_ContentColor = "#fafafa"; // TODO
+        $_70_30_left_ContentColor = "#fafafa"; // TODO
+        $_70_30_right_ContentColor = "#fafafa"; // TODO
 
-        // TODO change filepath from absolute to relative
-        //edit header background color
-        $fileString = file_get_contents(dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/header.css");
-        //$fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/header.css");
-        //$fileString = file_get_contents("EXT:typo3_template_baukasten/Resources/Public/Css/header.css");
-        $headerStart = strpos($fileString, "div.site-header");
-        $colorSelector = strpos($fileString, "background-color:", $headerStart);
-        $color2nd = strpos($fileString, "background-color:", $colorSelector+1);
-        $colorStart = strpos($fileString, " ", $color2nd)+1;
-        $colorEnd = strpos($fileString, ";", $colorStart);
 
-        $file = fopen(dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/header.css", "w");
-        //$file = fopen("EXT:typo3_template_baukasten/Resources/Public/Css/header.css", "w");
-        fwrite($file, substr($fileString, 0, $colorStart));
-        fwrite($file, $headerColor);
-        fwrite($file, substr($fileString, $colorEnd));
-        fclose($file);
-
-        //edit footer background color
-
-        $fileString = file_get_contents(dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/footer.css");
-        //$fileString = file_get_contents("D://Dokumente/XAMPP/htdocs/Studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Css/footer.css");
-        //$fileString = file_get_contents("EXT:typo3_template_baukasten/Resources/Public/Css/footer.css");
-        $footerStart = strpos($fileString, "div.site-footer");
-        $colorSelector = strpos($fileString, "background-color:", $footerStart);
-        $colorStart = strpos($fileString, " ", $colorSelector)+1;
-        $colorEnd = strpos($fileString, ";", $colorStart);
-
-        $file = fopen(dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/footer.css", "w");
-        //$file = fopen("EXT:typo3_template_baukasten/Resources/Public/Css/footer.css", "w");
-        fwrite($file, substr($fileString, 0, $colorStart));
-        fwrite($file, $footerColor);
-        fwrite($file, substr($fileString, $colorEnd));
-        fclose($file);
+        // get the root page id
+        $rootPageID = 251;     // TODO
+        // initialize the fileadmin path
+        $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID;     // TODO include HP1/2
 
 
 
+        if (!file_exists( $path . "_header.css")){
+            // set the path to the original templates
+            $templatePath = dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/";    // TODO include HP1/2
 
-        $data = ['result' => 'pls work'];
+
+            // -----------
+            // All elements are edited the same way
+            // 1. get content from original template
+            // 2. search where the background color starts & ends
+            // 3. create a file in fileadmin with the new colorcode
+            // backend layout colors are treated as a collective to get better I/O performance
+            // -----------
+            // header
+            $fileString = file_get_contents($templatePath . "header.css");
+            $colorStart = $this->getStart($fileString, "div.site-header");
+            $colorEnd = $this->getEnd($fileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $headerColor . substr($fileString, $colorEnd);
+            file_put_contents($path . "_header.css", $editedFileString);
+
+
+            // footer
+            $fileString = file_get_contents($templatePath . "footer.css");
+            $colorStart = $this->getStart($fileString, "div.site-footer");
+            $colorEnd = $this->getEnd($fileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $footerColor . substr($fileString, $colorEnd);
+            file_put_contents($path . "_footer.css", $editedFileString);
+
+
+            // HP1 Main Content
+            $fileString = file_get_contents($templatePath . "homepage1.css");
+            $colorStart = $this->getStart($fileString, "div .main-homepage1_content");
+            $colorEnd = $this->getEnd($fileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $hp1MainContentColor . substr($fileString, $colorEnd);
+            file_put_contents($path . "_homepage1.css", $editedFileString);
+
+
+            // HP2 Main Content
+            $fileString = file_get_contents($templatePath . "homepage2.css");
+            $colorStart = $this->getStart($fileString, "div .main-homepage2_content");
+            $colorEnd = $this->getEnd($fileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $hp2MainContentColor . substr($fileString, $colorEnd);
+            file_put_contents($path . "_homepage2.css", $editedFileString);
+
+
+            // ----- backend layout -----
+            // get file content
+            $fileString = file_get_contents($templatePath . "normal.css");
+
+            // 1 column
+            $_1ColumnStart = $this->getStart($fileString, ".einspaltig_content");
+            $_1ColumnEnd = $this->getEnd($fileString, $_1ColumnStart);
+
+            // 50-50
+            $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left");
+            $_50_50_left_end = $this->getEnd($fileString, $_50_50_left_start);
+
+            $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right");
+            $_50_50_right_end = $this->getEnd($fileString, $_50_50_right_start);
+
+            // 30-70
+            $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left");
+            $_30_70_left_end = $this->getEnd($fileString, $_30_70_left_start);
+
+            $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right");
+            $_30_70_right_end = $this->getEnd($fileString, $_30_70_right_start);
+
+            // 70-30
+            $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left");
+            $_70_30_left_end = $this->getEnd($fileString, $_70_30_left_start);
+
+            $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right");
+            $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
+
+            // construct the output string (there is probably a better way to do this if there's a method to specify substr between 2 ints)
+            $editedFileString = substr($fileString, 0, $_1ColumnStart) . $_1ColumnContentColor . substr($fileString, $_1ColumnEnd);
+            $editedFileString = substr($editedFileString, 0, $_50_50_left_start) . $_50_50_left_ContentColor . substr($fileString, $_50_50_left_end);
+            $editedFileString = substr($editedFileString, 0, $_50_50_right_start) . $_50_50_right_ContentColor . substr($fileString, $_50_50_right_end);
+            $editedFileString = substr($editedFileString, 0, $_30_70_left_start) . $_30_70_left_ContentColor . substr($fileString, $_30_70_left_end);
+            $editedFileString = substr($editedFileString, 0, $_30_70_right_start) . $_30_70_right_ContentColor . substr($fileString, $_30_70_right_end);
+            $editedFileString = substr($editedFileString, 0, $_70_30_left_start) . $_70_30_left_ContentColor . substr($fileString, $_70_30_left_end);
+            $editedFileString = substr($editedFileString, 0, $_70_30_right_start) . $_70_30_right_ContentColor . substr($fileString, $_70_30_right_end);
+
+            // write file to fileadmin
+            file_put_contents($path . "_normal.css", $editedFileString);
+        }else{
+
+            // -----------
+            // All elements are edited the same way
+            // 1. get content from fileadmin template
+            // 2. search where the background color starts & ends
+            // 3. edit file in fileadmin with the new colorcode
+            // backend layout colors are treated as a collective to get better I/O performance
+            // -----------
+            // header
+            $fileString = file_get_contents($path . "_header.css");
+            $colorStart = $this->getStart($fileString, "div.site-header");
+            $colorEnd = $this->getEnd($fileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $headerColor . substr($fileString, $colorEnd);
+            file_put_contents($path . "_header.css", $editedFileString);
+
+
+            // footer
+            $fileString = file_get_contents($path . "_footer.css");
+            $colorStart = $this->getStart($fileString, "div.site-footer");
+            $colorEnd = $this->getEnd($fileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $footerColor . substr($fileString, $colorEnd);
+            file_put_contents($path . "_footer.css", $editedFileString);
+
+
+            // HP2 Main Content
+            $fileString = file_get_contents($path . "_homepage1.css");
+            $colorStart = $this->getStart($fileString, "div .main-homepage1_content");
+            $colorEnd = $this->getEnd($fileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $hp1MainContentColor . substr($fileString, $colorEnd);
+            file_put_contents($path . "_homepage1.css", $editedFileString);
+
+
+            // HP2 Main Content
+            $fileString = file_get_contents($path . "_homepage2.css");
+            $colorStart = $this->getStart($fileString, "div .main-homepage2_content");
+            $colorEnd = $this->getEnd($fileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $hp2MainContentColor . substr($fileString, $colorEnd);
+            file_put_contents($path . "_homepage2.css", $editedFileString);
+
+
+            // ----- backend layout -----
+            // get file content
+            $fileString = file_get_contents($path . "_normal.css");
+
+            // 1 column
+            $_1ColumnStart = $this->getStart($fileString, ".einspaltig_content");
+            $_1ColumnEnd = $this->getEnd($fileString, $_1ColumnStart);
+
+            // 50-50
+            $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left");
+            $_50_50_left_end = $this->getEnd($fileString, $_50_50_left_start);
+
+            $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right");
+            $_50_50_right_end = $this->getEnd($fileString, $_50_50_right_start);
+
+            // 30-70
+            $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left");
+            $_30_70_left_end = $this->getEnd($fileString, $_30_70_left_start);
+
+            $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right");
+            $_30_70_right_end = $this->getEnd($fileString, $_30_70_right_start);
+
+            // 70-30
+            $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left");
+            $_70_30_left_end = $this->getEnd($fileString, $_70_30_left_start);
+
+            $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right");
+            $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
+
+            // construct the output string (there is probably a better way to do this if there's a method to specify substr between 2 ints)
+            $editedFileString = substr($fileString, 0, $_1ColumnStart) . $_1ColumnContentColor . substr($fileString, $_1ColumnEnd);
+            $editedFileString = substr($editedFileString, 0, $_50_50_left_start) . $_50_50_left_ContentColor . substr($fileString, $_50_50_left_end);
+            $editedFileString = substr($editedFileString, 0, $_50_50_right_start) . $_50_50_right_ContentColor . substr($fileString, $_50_50_right_end);
+            $editedFileString = substr($editedFileString, 0, $_30_70_left_start) . $_30_70_left_ContentColor . substr($fileString, $_30_70_left_end);
+            $editedFileString = substr($editedFileString, 0, $_30_70_right_start) . $_30_70_right_ContentColor . substr($fileString, $_30_70_right_end);
+            $editedFileString = substr($editedFileString, 0, $_70_30_left_start) . $_70_30_left_ContentColor . substr($fileString, $_70_30_left_end);
+            $editedFileString = substr($editedFileString, 0, $_70_30_right_start) . $_70_30_right_ContentColor . substr($fileString, $_70_30_right_end);
+
+            // write file to fileadmin
+            file_put_contents($path . "_normal.css", $editedFileString);
+        }
+
+        $data = ['result' => 'my stuff'];
         return $this->jsonResponse(json_encode($data));
+    }
+
+    /**
+     * This function searches for the index where the specified selector starts in the css file
+     * @param String $fileString    content string of the file to search
+     * @param String $needle        specifies the selector to find
+     * @return false|int            returns the start position of the selector in the string
+     */
+    public function getStart(String $fileString, String $needle){
+        $start = strpos($fileString, $needle);
+        $colorSelector = strpos($fileString, "background-color:", $start);
+        $colorStart = strpos($fileString, " ", $colorSelector)+1;
+
+        return $colorStart;
+    }
+
+    /**
+     * This function searches for the index where the "background-color" property ends in the css file
+     * (this doesn't have to be the end index of the selector because the rest of the file remains unchanged)
+     * @param String $fileString    content string of the file to search
+     * @param int $start            the index where to start the search
+     * @return false|int            returns the end position of the property in the string
+     */
+    public function getEnd(String $fileString, int $start){
+        return strpos($fileString, ";", $start);
     }
 }
