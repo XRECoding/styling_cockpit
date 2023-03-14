@@ -19,9 +19,23 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\PathUtility;
+
+use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+//use \TYPO3\CMS\Core\Utility\GeneralUtility;
+
+
+
+
+
+
+//ExtensionManagementUtility::addPageTSConfig('
+//    @import "EXT:styling_cockpit/Configuration/page.tsconfig"
+//');
+
 
 
 /**
@@ -42,12 +56,13 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         // ******************************************************
 
-        $test = "homepage1";
-        $homepageArray = array();
-        $gridArray = array();
 
-        $homepageOptions = array();
-        $gridOptions = array();
+        //$test = "homepage1";
+        //$homepageArray = array();
+        //$gridArray = array();
+
+        //$homepageOptions = array();
+        //$gridOptions = array();
 
 
         // getting the background color for div elements
@@ -70,23 +85,20 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         $footerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
+
         $layouts = BackendUtility::getPagesTSconfig(1)["mod."]["web_layout."]["BackendLayouts."];
 
+        $homepageOptions = [];
+        $gridOptions = [];
+
         foreach($layouts as $key => $value) {
-            // echo explode(".", $key)[0]."<br>";
-            $keyus = explode(".", $key)[0];
-
-            $testLayout = "<div id='".$keyus."' style='visibility: collapse; padding: 0;'>";
-            $heightCounter = count($value["config."]["backend_layout."]["rows."]) -2;
-
-            if (!str_contains($key, "homepage")) {
-                $testLayout .= "<div id='".$keyus."_header' name='header' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>header</div>";
-                $heightCounter += 2;
-                array_push($gridOptions, $keyus);
+            if (str_contains($key, "homepage")) {
+                array_push($homepageOptions, explode(".", $key)[0]);
             } else {
-                array_push($homepageOptions, $keyus);
+                array_push($gridOptions, explode(".", $key)[0]);
             }
 
+            /*
             foreach ($value["config."]["backend_layout."]["rows."] as $layout) {
                 $mar = explode("-", $key);
                 $zahl = 1;
@@ -105,47 +117,79 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         $testLayout .= "<div id='".$keyus."footer' name='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: ".$footerColor."'>footer</div>";
                     } else {
                         $testLayout .= "<div id='".$keyus."_".$testKilian."' name=".$keyus."_".$testKilian." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$testKilian."</div>";
-                    }
-                }
-
-            }
-
-            if (!str_contains($key, "homepage")) {
-                $testLayout .= "<div id='".$keyus."_footer' name='footer' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>footer</div>";
-            }
-            $testLayout .= "</div>";
-
-            if (!str_contains($key, "homepage")) {
-                array_push($gridArray, $testLayout);
-            } else {
-                array_push($homepageArray, $testLayout);
-            }
+            */
+               
 
         }
+        
+
+
+        $homepageArray = [];
+        $gridArray = [];
+
+        foreach ($homepageOptions as $homepage) {
+            foreach($layouts as $key => $value) {
+                $layoutName = explode(".", $key)[0];
+                $homepageID = (!strcmp($layoutName, $homepage)) ? $layoutName : $layoutName."_".$homepage;
+   
+                $layoutContainer = "<div id='".$homepageID."' style='visibility: collapse; padding: 0;'>";
+                $heightCounter = count($value["config."]["backend_layout."]["rows."]) -2;
+    
+                if (!str_contains($key, "homepage")) {
+                    $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>header</div>";
+                    $heightCounter += 2;
+                } 
+    
+                foreach ($value["config."]["backend_layout."]["rows."] as $layout) {
+                    $mar = explode("-", $key);
+                    $zahl = 1;
+    
+                    foreach ($layout["columns."] as $sub) {
+                        $a = (count($layout["columns."]) !== 1) ? 'display: inline-block;' : '';
+                        $b = (count($mar) == 1) ? 1 : ((int)$mar[$zahl++]) / 100;
+                        $c = (str_contains($key, "homepage")) ? 1 / count($layout["columns."]) : $b;
+    
+    
+                        $gridName = end(explode(".", $sub['name']));
+    
+                        if ($gridName == "header") {
+                            $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                        } else if ($gridName == "footer") {
+                            $layoutContainer .= "<div id='".$layoutName."footer' name='footer_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+                        } else {
+                            $layoutContainer .= "<div id='".$layoutName."_".$gridName."' name=".$layoutName."_".$gridName." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$gridName."</div>";
+                        }
+
+                    }
+    
+                }
+    
+                if (!str_contains($key, "homepage")) {
+                    $layoutContainer .= "<div id='".$layoutName."_footer' name='footer_".$homepage."' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>footer</div>";
+                }
+    
+                if (!str_contains($key, "homepage")) {
+                    array_push($gridArray, $layoutContainer.="</div>");
+                } else {
+                    array_push($homepageArray, $layoutContainer.="</div>");
+                }
+            }
+        }
+        
+        
+        // $pid = intVal($_GET['id']);
+
         $this->view->assign("homepageArray", $homepageArray);
         $this->view->assign("gridArray", $gridArray);
         $this->view->assign("homepageOptions", $homepageOptions);
         $this->view->assign("gridOptions", $gridOptions);
 
 
-        /*
-        $pid = intVal($_GET['id']);
-        $page = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Domain\\Repository\\PageRepository');
-
-        echo "<pre>";
-        print_r($page);
-        echo "</pre>";
-        */
-
-
         return $this->htmlResponse();
     }
 
 
-    /**
-     * @param ServerRequestInterface $request
-     * @return ResponseInterface
-     */
+
     public function doSomethingAction(ServerRequestInterface $request): ResponseInterface
     {
         //get the ajax inputs
@@ -170,6 +214,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $rootPageID = 251;     // TODO
         // initialize the fileadmin path
         $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID;     // TODO include HP1/2
+
 
 
 
@@ -347,6 +392,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             // write file to fileadmin
             file_put_contents($path . "_normal.css", $editedFileString);
         }
+
 
         $data = ['result' => 'my stuff'];
         return $this->jsonResponse(json_encode($data));
