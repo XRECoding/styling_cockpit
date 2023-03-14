@@ -20,14 +20,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
 use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-
-// use TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
-
-
-use TYPO3\CMS\Core\Context\Context;
 
 
 
@@ -35,18 +30,6 @@ use TYPO3\CMS\Core\Context\Context;
 ExtensionManagementUtility::addPageTSConfig('
     @import "EXT:styling_cockpit/Configuration/page.tsconfig"
 ');
-
-
-
-
-
-// echo "<pre>";
-// print_r(BackendUtility::getPagesTSconfig(0));
-
-
-// echo "</pre>";
-
-
 
 
 /**
@@ -136,73 +119,13 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
         }
         
-        // Returns the current page ID
-        // $pageId = (int) GeneralUtility::_GET('id');
-
-
-        // echo (int)\TYPO3\CMS\Backend\Utility\BackendUtility::BEgetRootLine(1)[0]['uid'];
-
-        // $pid = intVal($_GET['id']);
-        // $page = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        // echo $page;
-
-        // $rootPageId = BackendUtility::getPagesTSconfig(1)['TCEFORM.']['pages.'];
-
-
-        // $pid = intVal($_GET['id']);
-        // $page = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        // $root = array_pop($page->getRootLine($pid));
-
-        // require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('frontend') . 'Classes/Page/PageRepository.php');
-
-        // $pid = intVal($_GET['id']);
-
-        // // get current root page record
-        // $pageRepositoryObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        // $rootPageRecord = $pageRepositoryObj->getRootLine($pid);
-
-        // // assign the first element of the returned array to the variable
-        // $rootPageId = array_pop($rootPageRecord)['uid'];
-
-        // echo $rootPageId;''
-        // echo (int)\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('http://localhost/studienprojekt/news');
-
-        // echo (int)$GLOBALS['TSFE']->rootLine[0]['uid'];
-        // echo strval($GLOBALS['TSFE']->rootLine[0]['title']);
-
         
-        $pid = intVal($_GET['id']);
-        $page = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Domain\\Repository\\PageRepository');
-
-        // $root = $page->getRootLine($pid);
-
-        // echo $root;
-
-        // echo "<pre>";
-        // print_r($page);
-    
-    
-        // echo "</pre>";
-
-
-        // echo $page->getRootLine($pid);
-        // $root = array_pop($page->getRootLine($pid));
-
-        // $pageId = (int) GeneralUtility::_GET('id');
-        // $rootPageId = BackendUtility::BEgetRootLine($pageId)[0]['uid'];
-        // echo $rootPageId;
-
-
-
+        // $pid = intVal($_GET['id']);
 
         $this->view->assign("homepageArray", $homepageArray);
         $this->view->assign("gridArray", $gridArray);
         $this->view->assign("homepageOptions", $homepageOptions);
         $this->view->assign("gridOptions", $gridOptions);
-
-
-
-        // ******************************************************
 
         return $this->htmlResponse();
     }
