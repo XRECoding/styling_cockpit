@@ -19,10 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-Changed absolute path to relative path">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Public/Css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/Css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Public/Css/test.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,13 +39,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Read_and_Write_CSS" />
+        <entry key="$PROJECT_DIR$" value="Finalizing_controller_view_link" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,6 +62,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -109,7 +112,8 @@
       <workItem from="1678370921114" duration="1225000" />
       <workItem from="1678447424874" duration="1059000" />
       <workItem from="1678530610308" duration="665000" />
-      <workItem from="1678599283950" duration="11620000" />
+      <workItem from="1678599283950" duration="12356000" />
+      <workItem from="1678780827449" duration="6360000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented Layout">
       <created>1673629991202</created>
@@ -139,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675064873866</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction">
+      <created>1678612655130</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1678612655130</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,7 +176,8 @@
     <MESSAGE value="Implemented:&#10;-Read Color from CSS File&#10;-Write Color to CSS File" />
     <MESSAGE value="-Initialized colorMap" />
     <MESSAGE value="-Changed absolute path to relative path" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Changed absolute path to relative path" />
+    <MESSAGE value="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction" />
+    <option name="LAST_COMMIT_MESSAGE" value="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
@@ -176,10 +188,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1675063530354" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1678599319892">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1678780852508">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1678599319892" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1678780852508" />
     <state x="1146" y="598" key="Github.ShareDialog" timestamp="1673620331426">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -192,10 +204,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1674220510734" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1675064920457">
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1678612677058">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1675064920457" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1678612677058" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1673628204397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

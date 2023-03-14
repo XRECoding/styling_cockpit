@@ -153,9 +153,9 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         $gridName = end(explode(".", $sub['name']));
     
                         if ($gridName == "header") {
-                            $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>header</div>";
+                            $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: " . $headerColor . "'>header</div>";
                         } else if ($gridName == "footer") {
-                            $layoutContainer .= "<div id='".$layoutName."footer' name='footer_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black'>footer</div>";
+                            $layoutContainer .= "<div id='".$layoutName."footer' name='footer_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: " . $footerColor . "'>footer</div>";
                         } else {
                             $layoutContainer .= "<div id='".$layoutName."_".$gridName."' name=".$layoutName."_".$gridName." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$gridName."</div>";
                         }
@@ -198,6 +198,8 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // split all the colors from the colorArray
         $headerColor = $colorArray[0][1];
         $footerColor = $colorArray[1][1];
+
+        $outputString = $headerColor . " "  .$footerColor;
 
         $hp2MainContentColor = "#fafafa"; // TODO
         $hp1MainContentColor = "#fafafa"; // TODO
@@ -394,7 +396,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
 
 
-        $data = ['result' => 'my stuff'];
+        $data = ['result' => $outputString];
         return $this->jsonResponse(json_encode($data));
     }
 
