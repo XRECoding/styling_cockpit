@@ -15,6 +15,7 @@ document.getElementById("color-picker").addEventListener("change", function(even
 
 
 function onClick(div) {
+    alert("HELLO");
     var currentHomepage = getCurrentHomepage();
 
     if (div.getAttribute("name") == "header_" + currentHomepage) {
