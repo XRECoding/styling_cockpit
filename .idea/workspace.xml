@@ -19,12 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="Implemented Layout">
-      <change afterPath="$PROJECT_DIR$/Resources/Public/Css/footer.css" afterDir="false" />
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-Changed absolute path to relative path">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Public/Css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/Css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Public/Css/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/Css/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Read_and_Write_CSS" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -81,7 +79,37 @@
       <workItem from="1673620157811" duration="15000" />
       <workItem from="1673620175263" duration="7348000" />
       <workItem from="1673855675115" duration="6059000" />
-      <workItem from="1673884628143" duration="4161000" />
+      <workItem from="1673884628143" duration="4378000" />
+      <workItem from="1673891028401" duration="2337000" />
+      <workItem from="1673965598642" duration="13386000" />
+      <workItem from="1673983215751" duration="929000" />
+      <workItem from="1674032583031" duration="634000" />
+      <workItem from="1674217295118" duration="1972000" />
+      <workItem from="1675048265196" duration="2237000" />
+      <workItem from="1676452078742" duration="610000" />
+      <workItem from="1676889990046" duration="6665000" />
+      <workItem from="1676981448980" duration="4345000" />
+      <workItem from="1677033988975" duration="3953000" />
+      <workItem from="1677119070434" duration="8444000" />
+      <workItem from="1677467649792" duration="4612000" />
+      <workItem from="1677560806797" duration="6421000" />
+      <workItem from="1677653895846" duration="7547000" />
+      <workItem from="1677839846066" duration="8913000" />
+      <workItem from="1677864297419" duration="781000" />
+      <workItem from="1677924354839" duration="1189000" />
+      <workItem from="1677937017387" duration="628000" />
+      <workItem from="1677944293715" duration="623000" />
+      <workItem from="1678102496417" duration="1776000" />
+      <workItem from="1678132889467" duration="617000" />
+      <workItem from="1678182359473" duration="2022000" />
+      <workItem from="1678266986205" duration="2435000" />
+      <workItem from="1678283129356" duration="949000" />
+      <workItem from="1678360501940" duration="734000" />
+      <workItem from="1678370128114" duration="608000" />
+      <workItem from="1678370921114" duration="1225000" />
+      <workItem from="1678447424874" duration="1059000" />
+      <workItem from="1678530610308" duration="665000" />
+      <workItem from="1678599283950" duration="11620000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented Layout">
       <created>1673629991202</created>
@@ -90,7 +118,28 @@
       <option name="project" value="LOCAL" />
       <updated>1673629991203</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented:&#10;-Read Color from CSS File&#10;-Write Color to CSS File">
+      <created>1673890228344</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673890228344</updated>
+    </task>
+    <task id="LOCAL-00003" summary="-Initialized colorMap">
+      <created>1673980088348</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673980088348</updated>
+    </task>
+    <task id="LOCAL-00004" summary="-Changed absolute path to relative path">
+      <created>1675064873866</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675064873866</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,17 +162,24 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Implemented Layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Layout" />
+    <MESSAGE value="Implemented:&#10;-Read Color from CSS File&#10;-Write Color to CSS File" />
+    <MESSAGE value="-Initialized colorMap" />
+    <MESSAGE value="-Changed absolute path to relative path" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Changed absolute path to relative path" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620437066" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1673886469981">
+    <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1675063530354">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1673886469981" />
+    <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1675063530354" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1678599319892">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1678599319892" />
     <state x="1146" y="598" key="Github.ShareDialog" timestamp="1673620331426">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -132,14 +188,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="994" y="405" key="Github.UntrackedFilesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620341000" />
-    <state x="781" y="345" key="SettingsEditor" timestamp="1673630345379">
+    <state x="781" y="345" key="SettingsEditor" timestamp="1674220510734">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1673630345379" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1673630001520">
+    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1674220510734" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1675064920457">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1673630001520" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1675064920457" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1673628204397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

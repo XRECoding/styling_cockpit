@@ -3,6 +3,11 @@ let firstHomepageChild = document.getElementById("homepage").firstElementChild;
 let firstGridChild = document.getElementById("grid").firstElementChild;
 const coloreMap = new Map();
 
+
+coloreMap.set("header", document.getElementById("homepage1_header").style.backgroundColor);
+coloreMap.set("footer", document.getElementById("homepage1footer").style.backgroundColor);
+
+
 firstHomepageChild.style.visibility = "visible";
 var lastHomepage = firstHomepageChild.id;
 
@@ -23,12 +28,18 @@ function onClick(div) {
             elms[i].style.backgroundColor = colorPickerValue;
 
     } else if (div.getAttribute("name") == "footer") {
+
+        //var elms = document.querySelectorAll("[name='footer']");
+        //for (var i = 0; i < elms.length; i++)
+            //elms[i].style.backgroundColor=colorPickerValue;
+
         var elms = document.querySelectorAll("[name='footer_"+currentHomepage+"']");
         for (var i = 0; i < elms.length; i++) 
             elms[i].style.backgroundColor = colorPickerValue;
+
             
     } else {
-        div.style.backgroundColor = colorPickerValue; 
+        div.style.backgroundColor = colorPickerValue;
     }
 
     coloreMap.set(div.getAttribute("name"), colorPickerValue);
@@ -81,6 +92,28 @@ function changeGrid() {
     lastGrid = currentGrid;
 }
 
+
+
+
+
+require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
+    var saveButton = document.getElementsByClassName("testButton");
+    let writeCSS = function (element){
+        const arr = Array.from(coloreMap);
+        new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
+            .withQueryArguments({colorArray: arr})
+            .get()
+            .then(async function (response) {
+                const resolved = await response.resolve();
+                console.log(resolved.result);
+            });
+    }
+
+    for (let i = 0; i < saveButton.length; i++) {
+        saveButton[i].addEventListener('click', writeCSS, false);
+    }
+});
+
 /**
  * {@getCurrentHomepage}
  * Fetches the text of the currently selected homepage 
@@ -100,3 +133,4 @@ function changeFont() {
     var selectedFont = e.options[e.selectedIndex].text;
     console.log(selectedFont);
 }
+
