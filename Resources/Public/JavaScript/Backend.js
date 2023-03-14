@@ -1,9 +1,7 @@
-
 var colorPickerValue =  document.getElementById("color-picker").getAttribute('value');
 let firstHomepageChild = document.getElementById("homepage").firstElementChild;
 let firstGridChild = document.getElementById("grid").firstElementChild;
 const coloreMap = new Map();
-
 
 firstHomepageChild.style.visibility = "visible";
 var lastHomepage = firstHomepageChild.id;
@@ -17,33 +15,38 @@ document.getElementById("color-picker").addEventListener("change", function(even
 
 
 function onClick(div) {
-    if (div.getAttribute("name") == "header") {
-        var elms = document.querySelectorAll("[name='header']");
+    var currentHomepage = getCurrentHomepage();
+
+    if (div.getAttribute("name") == "header_" + currentHomepage) {
+        var elms = document.querySelectorAll("[name='header_"+currentHomepage+"']");
         for (var i = 0; i < elms.length; i++) 
-            elms[i].style.backgroundColor=colorPickerValue;
+            elms[i].style.backgroundColor = colorPickerValue;
 
     } else if (div.getAttribute("name") == "footer") {
-        var elms = document.querySelectorAll("[name='footer']");
+        var elms = document.querySelectorAll("[name='footer_"+currentHomepage+"']");
         for (var i = 0; i < elms.length; i++) 
-            elms[i].style.backgroundColor=colorPickerValue;
+            elms[i].style.backgroundColor = colorPickerValue;
             
     } else {
         div.style.backgroundColor = colorPickerValue; 
     }
 
     coloreMap.set(div.getAttribute("name"), colorPickerValue);
-
-    // console.log(...coloreMap.entries());
-    // console.log(coloreMap.size)
 }
 
 function alertColor(){
     alert(colorPickerValue.toString());
 }
 
+/**
+ * {@changeHomepage}
+ * Gets triggert if new homepage in frontend is selected.
+ * Sets the olf homepage to collapse and the new one 
+ * to visible so that the selected homepage is shown in
+ * the frontend
+ */
 function changeHomepage() {
-    var e = document.getElementById("homepageOption");
-    var currentHomepage = e.options[e.selectedIndex].text;
+    var currentHomepage = getCurrentHomepage();
 
     if (lastHomepage != "") {
         let a = document.getElementById(lastHomepage);
@@ -53,11 +56,20 @@ function changeHomepage() {
     let p = document.getElementById(currentHomepage);
     p.style.visibility = "visible";
     lastHomepage = currentHomepage;
+
+    changeGrid();
 }
 
+/**
+ * {@changeGrid}
+ * Gets triggert if new grid in frontend is selected.
+ * Sets the olf grid to collapse and the new one 
+ * to visible so that the selected grid is shown in
+ * the frontend
+ */
 function changeGrid() {
     var e = document.getElementById("gridOption");
-    var currentGrid = e.options[e.selectedIndex].text;
+    var currentGrid = e.options[e.selectedIndex].text + "_" + getCurrentHomepage();
 
     if (lastGrid != "") {
         let a = document.getElementById(lastGrid);
@@ -69,21 +81,22 @@ function changeGrid() {
     lastGrid = currentGrid;
 }
 
-require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
-    var saveButton = document.getElementsByClassName("testButton");
-    let writeCSS = function (element){
-        new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
-            .withQueryArguments({input: 1})
-            .get()
-            .then(async function (response) {
-                const resolved = await response.resolve();
-                console.log(resolved.result);
-            });
-    }
+/**
+ * {@getCurrentHomepage}
+ * Fetches the text of the currently selected homepage 
+ */
+function getCurrentHomepage() {
+    var a = document.getElementById("homepageOption");
+    return a.options[a.selectedIndex].text;
+}
 
-    for (let i = 0; i < saveButton.length; i++) {
-        saveButton[i].addEventListener('click', writeCSS, false);
-    }
-
-
-});
+/**
+ * {@changeFont}
+ * Gets triggert if new font in frontend is selected.
+ * Sets the font globaly to the new font 
+ */
+function changeFont() {
+    var e = document.getElementById("fontOption");
+    var selectedFont = e.options[e.selectedIndex].text;
+    console.log(selectedFont);
+}
