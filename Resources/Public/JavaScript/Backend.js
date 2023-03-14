@@ -4,8 +4,8 @@ let firstGridChild = document.getElementById("grid").firstElementChild;
 const coloreMap = new Map();
 
 
-coloreMap.set("header", document.getElementById("homepage1_header").style.backgroundColor);
-coloreMap.set("footer", document.getElementById("homepage1footer").style.backgroundColor);
+coloreMap.set("header_homepage1", document.getElementById("homepage1_header").style.backgroundColor);
+coloreMap.set("footer_homepage1", document.getElementById("homepage1footer").style.backgroundColor);
 
 
 firstHomepageChild.style.visibility = "visible";
@@ -21,6 +21,7 @@ document.getElementById("color-picker").addEventListener("change", function(even
 
 function onClick(div) {
     var currentHomepage = getCurrentHomepage();
+
 
     if (div.getAttribute("name") == "header_" + currentHomepage) {
         var elms = document.querySelectorAll("[name='header_"+currentHomepage+"']");
@@ -100,6 +101,11 @@ require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
     var saveButton = document.getElementsByClassName("testButton");
     let writeCSS = function (element){
         const arr = Array.from(coloreMap);
+
+        arr.forEach((element)=>{
+            console.log(element);
+        })
+
         new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
             .withQueryArguments({colorArray: arr})
             .get()
