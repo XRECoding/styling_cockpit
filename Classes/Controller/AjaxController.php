@@ -62,18 +62,13 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $rootlinePages = $rootline->get();
 
         $is_siteroot =  array_values($rootlinePages)[0]["is_siteroot"];
+        $this->view->assign("is_siteroot", $is_siteroot);
 
-        if ($is_siteroot) {
-            echo "This is a siteroot";
-        } else {
-            echo "This is not a siteroot";
-        }
-        
-        // echo "<pre>";
-        
-        // print_r($is_siteroot);
-    
-        // echo "</pre>";
+        // if ($is_siteroot) {
+        //     echo "This is a siteroot";
+        // } else {
+        //     echo "This is not a siteroot";
+        // }
 
         //$test = "homepage1";
         //$homepageArray = array();
