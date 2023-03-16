@@ -24,6 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\PathUtility;
 
+use TYPO3\CMS\Core\Utility\RootlineUtility;
 use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 //use \TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -56,6 +57,18 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         // ******************************************************
 
+
+        $rootline = GeneralUtility::makeInstance(RootlineUtility::class, GeneralUtility::_GP('id'));
+        $rootlinePages = $rootline->get();
+
+        $is_siteroot =  array_values($rootlinePages)[0]["is_siteroot"];
+        $this->view->assign("is_siteroot", $is_siteroot);
+
+        // if ($is_siteroot) {
+        //     echo "This is a siteroot";
+        // } else {
+        //     echo "This is not a siteroot";
+        // }
 
         //$test = "homepage1";
         //$homepageArray = array();
@@ -98,6 +111,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 array_push($gridOptions, explode(".", $key)[0]);
             }
 
+            
             /*
             foreach ($value["config."]["backend_layout."]["rows."] as $layout) {
                 $mar = explode("-", $key);
