@@ -19,11 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-minor patch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Public/Css/test.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -188,10 +186,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1675063530354" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1678780852508">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1678925778690">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1678780852508" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1678925778690" />
     <state x="1146" y="598" key="Github.ShareDialog" timestamp="1673620331426">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

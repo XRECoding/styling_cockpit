@@ -4,8 +4,54 @@ let firstGridChild = document.getElementById("grid").firstElementChild;
 const coloreMap = new Map();
 
 
-coloreMap.set("header_homepage1", document.getElementById("homepage1_header").style.backgroundColor);
-coloreMap.set("footer_homepage1", document.getElementById("homepage1footer").style.backgroundColor);
+
+
+
+// save the current element color in the map
+// credit for the hex conversion: http://wowmotty.blogspot.com/2009/06/convert-jquery-rgb-output-to-hex-color.html
+var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+
+//Function to convert rgb color to hex format
+function rgb2hex(rgb) {
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+}
+
+function hex(x) {
+    return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+}
+
+// header
+coloreMap.set("header_homepage1", rgb2hex(document.getElementById("homepage1_header").style.backgroundColor));
+//footer
+coloreMap.set("footer_homepage1", rgb2hex(document.getElementById("homepage1footer").style.backgroundColor));
+// hp1
+coloreMap.set("homepage1_homepage1_main1", rgb2hex(document.getElementById("homepage1_homepage1_main1").style.backgroundColor));
+coloreMap.set("homepage1_homepage1_main2", rgb2hex(document.getElementById("homepage1_homepage1_main2").style.backgroundColor));
+coloreMap.set("homepage1_homepage1_main3", rgb2hex(document.getElementById("homepage1_homepage1_main3").style.backgroundColor));
+// hp2
+coloreMap.set("homepage2_homepage2_main1", rgb2hex(document.getElementById("homepage2_homepage2_main1").style.backgroundColor));
+coloreMap.set("homepage2_homepage2_main2", rgb2hex(document.getElementById("homepage2_homepage2_main2").style.backgroundColor));
+// 1 spaltig
+coloreMap.set("1spaltig_normal", rgb2hex(document.getElementById("1spaltig_normal").style.backgroundColor));
+// 2 spalten 30/70
+coloreMap.set("2Spalten-30-70_main_links", rgb2hex(document.getElementById("2Spalten-30-70_main_links").style.backgroundColor));
+coloreMap.set("2Spalten-30-70_main_rechts", rgb2hex(document.getElementById("2Spalten-30-70_main_rechts").style.backgroundColor));
+// 2 spalten 50/50
+coloreMap.set("2Spalten-50-50_main_links", rgb2hex(document.getElementById("2Spalten-50-50_main_links").style.backgroundColor));
+coloreMap.set("2Spalten-50-50_main_rechts", rgb2hex(document.getElementById("2Spalten-50-50_main_rechts").style.backgroundColor));
+// 2 spalten 70/30
+coloreMap.set("2Spalten-70-30_main_links", rgb2hex(document.getElementById("2Spalten-70-30_main_links").style.backgroundColor));
+coloreMap.set("2Spalten-70-30_main_rechts", rgb2hex(document.getElementById("2Spalten-70-30_main_rechts").style.backgroundColor));
+
+
+console.log(coloreMap);
+
+
+
+
+
+
 
 
 firstHomepageChild.style.visibility = "visible";
@@ -100,12 +146,8 @@ function changeGrid() {
 require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
     var saveButton = document.getElementsByClassName("testButton");
     let writeCSS = function (element){
+        // making array because ajax doesn't accept map
         const arr = Array.from(coloreMap);
-
-        arr.forEach((element)=>{
-            console.log(element);
-        })
-
         new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
             .withQueryArguments({colorArray: arr})
             .get()
