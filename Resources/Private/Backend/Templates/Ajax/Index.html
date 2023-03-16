@@ -24,135 +24,140 @@
 <f:section name="Content">
     <f:asset.script identifier="StylingCockpitJS" src="EXT:styling_cockpit/Resources/Public/JavaScript/Backend.js" />
 
-    <h1>Edit Page</h1>  <!-- Title TBD -->
-    <div class="typo3-TCEforms">
-        <a role="tabpanel">
-            <ul class="nav nav-tabs t3js-tabs" role="tablist">
-                <li role="presentation" class="t3js-tabmenu-item nav-item">
-                    <a class="nav-link">
-                        <input type="color" id="color-picker" value="#ffffff"/>
-                    </a>
-                </li>
+    <f:if condition="{is_siteroot}==1">
+    <f:then>
+        <h1>Edit Page</h1>  <!-- Title TBD -->
+        <div class="typo3-TCEforms">
+            <a role="tabpanel">
+                <ul class="nav nav-tabs t3js-tabs" role="tablist">
+                    <li role="presentation" class="t3js-tabmenu-item nav-item">
+                        <a class="nav-link">
+                            <input type="color" id="color-picker" value="#ffffff"/>
+                        </a>
+                    </li>
 
-                <li role="presentation" class="t3js-tabmenu-item nav-item">
-                    <a class="nav-link">
-                        <select id="fontOption" class="form-select form-control-adapt" onchange="changeFont()">
-                            <option>Serif</option>
-                            <option>Sans-serif</option>
-                            <option>Monospace</option>
-                            <option>Cursive</option>
-                            <option>Fantasy</option>
-                            <option>Times New Roman</option>
-                            <option>Georgia</option>
-                            <option>Garamond</option>
-                            <option>Arial</option>
-                            <option>Verdana</option>
-                            <option>Helvetica</option>
-                            <option>Courier New</option>
-                            <option>Lucida Console</option>
-                            <option>Monaco</option>
-                            <option>Brush Script MT</option>
-                            <option>Lucida Handwriting</option>
-                            <option>Copperplate</option>
-                            <option>Papyrus</option>
-                        </select>
-                    </a>
-                </li>
+                    <li role="presentation" class="t3js-tabmenu-item nav-item">
+                        <a class="nav-link">
+                            <select id="fontOption" class="form-select form-control-adapt" onchange="changeFont()">
+                                <option>Serif</option>
+                                <option>Sans-serif</option>
+                                <option>Monospace</option>
+                                <option>Cursive</option>
+                                <option>Fantasy</option>
+                                <option>Times New Roman</option>
+                                <option>Georgia</option>
+                                <option>Garamond</option>
+                                <option>Arial</option>
+                                <option>Verdana</option>
+                                <option>Helvetica</option>
+                                <option>Courier New</option>
+                                <option>Lucida Console</option>
+                                <option>Monaco</option>
+                                <option>Brush Script MT</option>
+                                <option>Lucida Handwriting</option>
+                                <option>Copperplate</option>
+                                <option>Papyrus</option>
+                            </select>
+                        </a>
+                    </li>
 
-                <button class="testButton">
-                    AjaxButton
-                </button>
+                    <button class="testButton">
+                        AjaxButton
+                    </button>
 
-            </ul>
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active">
-                    <fieldset class="form-section">
-                        <h4 class="form-section-headline">Page Layout</h4>
-                        <div class="row">
-                            <div class="form-group t3js-formengine-validation-marker t3js-formengine-palette-field col col-sm-6">
-                                <label class="t3js-formengine-label">Backend Layout</label> <!-- asd -->
-                                <div class="formengine-field-item t3js-formengine-field-item">
-                                    <div class="form-control-wrap">
-                                        <div class="form-wizards-wrap">
-                                            <div class="form-wizards-element">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon input-group-icon">
-                                                            <img loading="lazy" src="/studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Icons/BackendLayouts/homepage1.png" alt="Homepage1" title="Homepage1">
-                                                    </span>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active">
+                        <fieldset class="form-section">
+                            <h4 class="form-section-headline">Page Layout</h4>
+                            <div class="row">
+                                <div class="form-group t3js-formengine-validation-marker t3js-formengine-palette-field col col-sm-6">
+                                    <label class="t3js-formengine-label">Backend Layout</label> <!-- asd -->
+                                    <div class="formengine-field-item t3js-formengine-field-item">
+                                        <div class="form-control-wrap">
+                                            <div class="form-wizards-wrap">
+                                                <div class="form-wizards-element">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon input-group-icon">
+                                                                <img loading="lazy" src="/studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Icons/BackendLayouts/homepage1.png" alt="Homepage1" title="Homepage1">
+                                                        </span>
 
-                                                    <!-- Start show all homepage layout options -->
-                                                    <select id="homepageOption" onchange="changeHomepage()" name="" data-formengine-validation-rules="[{&quot;type&quot;:&quot;select&quot;,&quot;minItems&quot;:0,&quot;maxItems&quot;:1}]" class="form-select form-control-adapt">
-                                                        <f:for each="{homepageOptions}" as="homepageOption">
-                                                            <option value="pagets__homepage1" data-icon="<img loading=&quot;lazy&quot;  src=&quot;/studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Icons/BackendLayouts/homepage1.png&quot; alt=&quot;Homepage1&quot; title=&quot;Homepage1&quot; />">{homepageOption}</option>
-                                                        </f:for>
-                                                    </select>
-                                                    <!-- End show all homepage layout options -->
+                                                        <!-- Start show all homepage layout options -->
+                                                        <select id="homepageOption" onchange="changeHomepage()" name="" data-formengine-validation-rules="[{&quot;type&quot;:&quot;select&quot;,&quot;minItems&quot;:0,&quot;maxItems&quot;:1}]" class="form-select form-control-adapt">
+                                                            <f:for each="{homepageOptions}" as="homepageOption">
+                                                                <option value="pagets__homepage1" data-icon="<img loading=&quot;lazy&quot;  src=&quot;/studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Icons/BackendLayouts/homepage1.png&quot; alt=&quot;Homepage1&quot; title=&quot;Homepage1&quot; />">{homepageOption}</option>
+                                                            </f:for>
+                                                        </select>
+                                                        <!-- End show all homepage layout options -->
 
-                                                </div>
-                                            </div>
-
-                                            <!-- Start Generate Homepage Layouts -->
-                                            <div class="form-wizards-items-bottom">
-                                                <div class="t3js-forms-select-single-icons icon-list">
-                                                    <div class="row" id="homepage" style="height: 500px;">
-                                                        <f:for each="{homepageArray}" as="item">
-                                                            <f:format.html>{item}</f:format.html>
-                                                        </f:for>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- End Generate Homepage Layouts -->
 
+                                                <!-- Start Generate Homepage Layouts -->
+                                                <div class="form-wizards-items-bottom">
+                                                    <div class="t3js-forms-select-single-icons icon-list">
+                                                        <div class="row" id="homepage" style="height: 500px;">
+                                                            <f:for each="{homepageArray}" as="item">
+                                                                <f:format.html>{item}</f:format.html>
+                                                            </f:for>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Generate Homepage Layouts -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group t3js-formengine-validation-marker t3js-formengine-palette-field col col-sm-6">
+                                    <label class="t3js-formengine-label">Content Layout</label> <!--  asdasd -->
+                                    <div class="formengine-field-item t3js-formengine-field-item">
+                                        <div class="form-control-wrap">
+                                            <div class="form-wizards-wrap">
+                                                <div class="form-wizards-element">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon input-group-icon">
+                                                                <img loading="lazy" src="/studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Icons/BackendLayouts/main_1Spaltig.png" alt="Eine Spalte" title="Eine Spalte">
+                                                        </span>
+
+                                                        <!-- Start show all grid layout options -->
+                                                        <select id="gridOption" onchange="changeGrid()" name="data[pages][251][backend_layout_next_level]" data-formengine-validation-rules="[{&quot;type&quot;:&quot;select&quot;,&quot;minItems&quot;:0,&quot;maxItems&quot;:1}]" class="form-select form-control-adapt">
+                                                            <f:for each="{gridOptions}" as="gridOption">
+                                                                <option data-icon="<img loading=&quot;lazy&quot;  src=&quot;/studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Icons/BackendLayouts/main_1Spaltig.png&quot; alt=&quot;Eine Spalte&quot; title=&quot;Eine Spalte&quot; />">{gridOption}</option>
+                                                            </f:for>
+                                                        </select>
+                                                        <!-- End show all grid layout options -->
+
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- Start Generate Grid Layouts -->
+                                                <div class="form-wizards-items-bottom">
+                                                    <div class="t3js-forms-select-single-icons icon-list" >
+                                                        <div class="row" id="grid" style="height: 500px;">
+                                                            <f:for each="{gridArray}" as="item">
+                                                                <f:format.html>{item}</f:format.html>
+                                                            </f:for>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Generate Grid Layouts -->
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group t3js-formengine-validation-marker t3js-formengine-palette-field col col-sm-6">
-                                <label class="t3js-formengine-label">Content Layout</label> <!--  asdasd -->
-                                <div class="formengine-field-item t3js-formengine-field-item">
-                                    <div class="form-control-wrap">
-                                        <div class="form-wizards-wrap">
-                                            <div class="form-wizards-element">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon input-group-icon">
-                                                            <img loading="lazy" src="/studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Icons/BackendLayouts/main_1Spaltig.png" alt="Eine Spalte" title="Eine Spalte">
-                                                    </span>
-
-                                                    <!-- Start show all grid layout options -->
-                                                    <select id="gridOption" onchange="changeGrid()" name="data[pages][251][backend_layout_next_level]" data-formengine-validation-rules="[{&quot;type&quot;:&quot;select&quot;,&quot;minItems&quot;:0,&quot;maxItems&quot;:1}]" class="form-select form-control-adapt">
-                                                        <f:for each="{gridOptions}" as="gridOption">
-                                                            <option data-icon="<img loading=&quot;lazy&quot;  src=&quot;/studienprojekt/typo3conf/ext/typo3_template_baukasten/Resources/Public/Icons/BackendLayouts/main_1Spaltig.png&quot; alt=&quot;Eine Spalte&quot; title=&quot;Eine Spalte&quot; />">{gridOption}</option>
-                                                        </f:for>
-                                                    </select>
-                                                    <!-- End show all grid layout options -->
-
-                                                </div>
-                                            </div>
-
-
-                                            <!-- Start Generate Grid Layouts -->
-                                            <div class="form-wizards-items-bottom">
-                                                <div class="t3js-forms-select-single-icons icon-list" >
-                                                    <div class="row" id="grid" style="height: 500px;">
-                                                        <f:for each="{gridArray}" as="item">
-                                                            <f:format.html>{item}</f:format.html>
-                                                        </f:for>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Generate Grid Layouts -->
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
+                        </fieldset>
+                    </div>
                 </div>
-            </div>
-        </a>
-    </div>
-
+            </a>
+        </div>
+    </f:then>
+    <f:else>
+        <h1>Please select a root page</h1>
+    </f:else>
+    </f:if>
 </f:section>
-
 </html>
