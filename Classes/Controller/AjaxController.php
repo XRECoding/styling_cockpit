@@ -55,9 +55,6 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $websiteID = $PageTSconfig['TSFE.']['constants.']['websiteConfig.'];
 
 
-        // ******************************************************
-
-
         $rootline = GeneralUtility::makeInstance(RootlineUtility::class, GeneralUtility::_GP('id'));
         $rootlinePages = $rootline->get();
 
@@ -102,44 +99,26 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $layouts = BackendUtility::getPagesTSconfig(1)["mod."]["web_layout."]["BackendLayouts."];
 
         $homepageOptions = [];
+        $gridOptionsUncut = [];
         $gridOptions = [];
 
         foreach($layouts as $key => $value) {
             if (str_contains($key, "homepage")) {
                 array_push($homepageOptions, explode(".", $key)[0]);
             } else {
-                array_push($gridOptions, explode(".", $key)[0]);
+                array_push($gridOptionsUncut, explode(".", $key)[0]);
             }
-
-            
-            /*
-            foreach ($value["config."]["backend_layout."]["rows."] as $layout) {
-                $mar = explode("-", $key);
-                $zahl = 1;
-
-                foreach ($layout["columns."] as $sub) {
-                    $a = (count($layout["columns."]) !== 1) ? 'display: inline-block;' : '';
-                    $b = (count($mar) == 1) ? 1 : ((int)$mar[$zahl++]) / 100;
-                    $c = (str_contains($key, "homepage")) ? 1 / count($layout["columns."]) : $b;
-
-
-                    $testKilian = end(explode(".", $sub['name']));
-
-                    if ($testKilian == "header") {
-                        $testLayout .= "<div id='".$keyus."_header' name='header' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: ".$headerColor."'>header</div>";
-                    } else if ($testKilian == "footer") {
-                        $testLayout .= "<div id='".$keyus."footer' name='footer' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: ".$footerColor."'>footer</div>";
-                    } else {
-                        $testLayout .= "<div id='".$keyus."_".$testKilian."' name=".$keyus."_".$testKilian." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a."'>".$testKilian."</div>";
-            */
-               
-
         }
+
+
+        $gridOptions = array_slice($gridOptionsUncut, 0, 4);
         
 
 
         $homepageArray = [];
         $gridArray = [];
+
+        $alertText = "'Die Farbe des Headers kann nur über die Homepage angepasst werden.'";
 
         foreach ($homepageOptions as $homepage) {
             foreach($layouts as $key => $value) {
@@ -150,7 +129,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $heightCounter = count($value["config."]["backend_layout."]["rows."]) -2;
     
                 if (!str_contains($key, "homepage")) {
-                    $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>header</div>";
+                    $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='alertText()' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>header</div>";
                     $heightCounter += 2;
                 } 
     
@@ -179,7 +158,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 }
     
                 if (!str_contains($key, "homepage")) {
-                    $layoutContainer .= "<div id='".$layoutName."_footer' name='footer_".$homepage."' onclick='alert();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>footer</div>";
+                    $layoutContainer .= "<div id='".$layoutName."_footer' name='footer_".$homepage."' onclick='alertText();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>footer</div>";
                 }
     
                 if (!str_contains($key, "homepage")) {
@@ -191,7 +170,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
         
         
-        // $pid = intVal($_GET['id']);
+        $pid = intVal($_GET['id']);
 
         $this->view->assign("homepageArray", $homepageArray);
         $this->view->assign("gridArray", $gridArray);

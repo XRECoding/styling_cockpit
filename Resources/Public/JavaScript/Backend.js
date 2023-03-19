@@ -22,23 +22,16 @@ document.getElementById("color-picker").addEventListener("change", function(even
 function onClick(div) {
     var currentHomepage = getCurrentHomepage();
 
-
     if (div.getAttribute("name") == "header_" + currentHomepage) {
         var elms = document.querySelectorAll("[name='header_"+currentHomepage+"']");
         for (var i = 0; i < elms.length; i++) 
             elms[i].style.backgroundColor = colorPickerValue;
 
-    } else if (div.getAttribute("name") == "footer") {
-
-        //var elms = document.querySelectorAll("[name='footer']");
-        //for (var i = 0; i < elms.length; i++)
-            //elms[i].style.backgroundColor=colorPickerValue;
-
+    } else if (div.getAttribute("name") == "footer_" + currentHomepage) {
         var elms = document.querySelectorAll("[name='footer_"+currentHomepage+"']");
         for (var i = 0; i < elms.length; i++) 
             elms[i].style.backgroundColor = colorPickerValue;
 
-            
     } else {
         div.style.backgroundColor = colorPickerValue;
     }
@@ -94,6 +87,9 @@ function changeGrid() {
 }
 
 
+function alertText() {
+    alert("Der Header / Footer kann nur über die Homepage Layouts angepasst werden.")
+}
 
 
 
