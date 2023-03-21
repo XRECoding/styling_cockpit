@@ -18,25 +18,11 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
-
-
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\PathUtility;
-
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-//use \TYPO3\CMS\Core\Utility\GeneralUtility;
-
-
-
-
-
-
-//ExtensionManagementUtility::addPageTSConfig('
-//    @import "EXT:styling_cockpit/Configuration/page.tsconfig"
-//');
-
 
 
 /**
@@ -54,59 +40,69 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $PageTSconfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($this->pObj->id);
         $websiteID = $PageTSconfig['TSFE.']['constants.']['websiteConfig.'];
 
+        // getting current page ID
+        $rootPageID = intVal($_GET['id']);
+        $this->view->assign("rootPageID", $rootPageID);
 
-
-
-        // ------------- works dont change----------------------------
-
-
-        // getting the background colors for all elements
-        $rootPageID = 251;      // TODO
-        // setting path to fileadmin path of extension
-        $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID . "_";     // TODO include HP1/2
-
+        // checking if selected page is root
         $rootline = GeneralUtility::makeInstance(RootlineUtility::class, GeneralUtility::_GP('id'));
         $rootlinePages = $rootline->get();
 
         $is_siteroot =  array_values($rootlinePages)[0]["is_siteroot"];
         $this->view->assign("is_siteroot", $is_siteroot);
 
-        // if ($is_siteroot) {
-        //     echo "This is a siteroot";
-        // } else {
-        //     echo "This is not a siteroot";
-        // }
-
-        //$test = "homepage1";
-        //$homepageArray = array();
-        //$gridArray = array();
-
-        //$homepageOptions = array();
-        //$gridOptions = array();
-
-
+        // setting path to fileadmin path of extension
+        $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID . "_";     // TODO include HP1/2
         // if the file doesn't exist we use the path to typo3_template_baukasten instead (=default)
         if (!file_exists( $path . "header.css")){
             $path = dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/";    // TODO include HP1/2
         }
 
+        // getting first font
+        $fileString = file_get_contents($path . "header.css");
+
+        $start = strpos($fileString, "body");
+        $colorSelector = strpos($fileString, "font-family:", $start);
+        $fontStart = strpos($fileString, " ", $colorSelector)+1;
+
+        $fontEnd = strpos($fileString, ";", $fontStart);
+        if (str_contains(substr($fileString, $fontStart, $fontEnd - $fontStart), ",")){
+            $fontEnd = strpos($fileString, ",", $fontStart);
+        }
+
+        $font = substr($fileString, $fontStart, $fontEnd - $fontStart);
+        $this->view->assign("selectedFont", $font);
+
+        $this->view->assign("fonts", ["Arial", "Brush Script MT", "Copperplate", "Courier New", "Cursive", "Fantasy",
+            "Garamond", "Georgia", "Helvetica", "Lucida Console", "Lucida Handwriting", "Monaco", "Monospace",
+            "Papyrus", "Sans-serif", "Serif", "Times New Roman", "Verdana"]);
+
+        // getting all background colors of all elements and saving them in the map
+        // header and footer are excluded because they are constructed separately
+        $map = array();
         // header
         $fileString = file_get_contents($path . "header.css");
-        $colorStart = $this->getStart($fileString, "div.site-header");
+        $colorStart = $this->getStart($fileString, "div.site-header-hp1");
         $colorEnd = $this->getEnd($fileString, $colorStart);
 
-        $headerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
+        $hp1_headerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
+        $colorStart = $this->getStart($fileString, "div.site-header-hp2");
+        $colorEnd = $this->getEnd($fileString, $colorStart);
+
+        $hp2_headerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
         // footer
         $fileString = file_get_contents($path . "footer.css");
-        $colorStart = $this->getStart($fileString, "div.site-footer");
+        $colorStart = $this->getStart($fileString, "div.site-footer-hp1");
         $colorEnd = $this->getEnd($fileString, $colorStart);
 
-        $footerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
+        $hp1_footerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
-        // ----------doesnt work yet-------------------------------
-        $map = array();
+        $colorStart = $this->getStart($fileString, "div.site-footer-hp2");
+        $colorEnd = $this->getEnd($fileString, $colorStart);
+
+        $hp2_footerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
 
         // hp2
         $fileString = file_get_contents($path . "homepage2.css");
@@ -206,7 +202,11 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $heightCounter = count($value["config."]["backend_layout."]["rows."]) -2;
     
                 if (!str_contains($key, "homepage")) {
-                    $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='alertText()' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>header</div>";
+                    if ($homepage == "homepage1"){
+                        $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='alertText()' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px)); background-color: " . $hp1_headerColor . "'>header</div>";
+                    } else {
+                        $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='alertText()' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px)); background-color: " . $hp2_headerColor . "'>header</div>";
+                    }
                     $heightCounter += 2;
                 } 
     
@@ -223,9 +223,19 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         $gridName = end(explode(".", $sub['name']));
     
                         if ($gridName == "header") {
-                            $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: " . $headerColor . "'>header</div>";
+                            if ($layoutName == "homepage1"){
+                                $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: " . $hp1_headerColor . "'>header</div>";
+                            } else {
+                                $layoutContainer .= "<div id='".$layoutName."_header' name='header_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: " . $hp2_headerColor . "'>header</div>";
+                            }
+
                         } else if ($gridName == "footer") {
-                            $layoutContainer .= "<div id='".$layoutName."footer' name='footer_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: " . $footerColor . "'>footer</div>";
+                            if ($layoutName == "homepage1"){
+                                $layoutContainer .= "<div id='".$layoutName."footer' name='footer_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: " . $hp1_footerColor . "'>footer</div>";
+                            } else {
+                                $layoutContainer .= "<div id='".$layoutName."footer' name='footer_".$homepage."' onclick='onClick(this);' style='height: 20%; width:100%; border: 1px solid black; background-color: " . $hp2_footerColor . "'>footer</div>";
+                            }
+
                         } else {
                             $layoutContainer .= "<div id='".$layoutName."_".$gridName."' name=".$layoutName."_".$gridName." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a." background-color: " . $map[$layoutName."_".$gridName] ."'>".$gridName."</div>";
 
@@ -236,7 +246,11 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 }
     
                 if (!str_contains($key, "homepage")) {
-                    $layoutContainer .= "<div id='".$layoutName."_footer' name='footer_".$homepage."' onclick='alertText();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px));'>footer</div>";
+                    if ($homepage == "homepage1"){
+                        $layoutContainer .= "<div id='".$layoutName."_footer' name='footer_".$homepage."' onclick='alertText();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px)); background-color: " . $hp1_footerColor . "'>footer</div>";
+                    } else {
+                        $layoutContainer .= "<div id='".$layoutName."_footer' name='footer_".$homepage."' onclick='alertText();' style='height: 20%; width:100%; border: 1px solid black; background-image: linear-gradient(to bottom right,  transparent calc(50% - 1px), black, transparent calc(50% + 1px)); background-color: " . $hp2_footerColor . "'>footer</div>";
+                    }
                 }
     
                 if (!str_contains($key, "homepage")) {
@@ -246,9 +260,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 }
             }
         }
-        
-        
-        $pid = intVal($_GET['id']);
+
 
         $this->view->assign("homepageArray", $homepageArray);
         $this->view->assign("gridArray", $gridArray);
@@ -260,20 +272,18 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
 
-
+    /**
+     * This function saves the changes made in the styling cockpit to the corresponding css files
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function doSomethingAction(ServerRequestInterface $request): ResponseInterface
     {
         //get the ajax inputs
         $colorArray = $request->getQueryParams()['colorArray'] ?? null;
+        $rootPageID = $request->getQueryParams()['pageID'] ?? null;
+        $font = $request->getQueryParams()['font'] ?? null;
 
-        // split all the colors from the colorArray
-//        $headerColor = $colorArray[0][1];
-//        $footerColor = $colorArray[1][1];
-
-
-//        $outputString = $colorArray[1][0] . $colorArray[1][1];;
-
-        // -----------------
 
         $map = array();
         foreach ($colorArray as $column){
@@ -281,45 +291,8 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
 
 
-        $headerColor = $map['header_homepage1'];    // TODO
-        $footerColor = $map['footer_homepage1'];    // TODO
-        $hp2Main_left_ContentColor = $map['homepage2_homepage2_main1']; // TODO
-        $hp2Main_right_ContentColor = $map['homepage2_homepage2_main2']; // TODO
-        $hp1Main_top_ContentColor = $map['homepage1_homepage1_main1']; // TODO
-        $hp1Main_left_ContentColor = $map['homepage1_homepage1_main2']; // TODO
-        $hp1Main_right_ContentColor = $map['homepage1_homepage1_main3']; // TODO
-        $_1ColumnContentColor = $map['1spaltig_normal']; // TODO
-        $_50_50_left_ContentColor = $map['2Spalten-50-50_main_links']; // TODO
-        $_50_50_right_ContentColor = $map['2Spalten-50-50_main_rechts']; // TODO
-        $_30_70_left_ContentColor = $map['2Spalten-30-70_main_links']; // TODO
-        $_30_70_right_ContentColor = $map['2Spalten-30-70_main_rechts']; // TODO
-        $_70_30_left_ContentColor = $map['2Spalten-70-30_main_links']; // TODO
-        $_70_30_right_ContentColor = $map['2Spalten-70-30_main_rechts']; // TODO
-        // -----------------
-
-
-//        $headerColor = "whitesmoke";    // TODO
-//        $footerColor = "whitesmoke";    // TODO
-//        $hp2Main_left_ContentColor = "#fafafa"; // TODO
-//        $hp2Main_right_ContentColor = "#fafafa"; // TODO
-//        $hp1Main_top_ContentColor = "#fafafa"; // TODO
-//        $hp1Main_left_ContentColor = "#fafafa"; // TODO
-//        $hp1Main_right_ContentColor = "#fafafa"; // TODO
-//        $_1ColumnContentColor = "#fafafa"; // TODO
-//        $_50_50_left_ContentColor = "#fafafa"; // TODO
-//        $_50_50_right_ContentColor = "#fafafa"; // TODO
-//        $_30_70_left_ContentColor = "#fafafa"; // TODO
-//        $_30_70_right_ContentColor = "#fafafa"; // TODO
-//        $_70_30_left_ContentColor = "#fafafa"; // TODO
-//        $_70_30_right_ContentColor = "#fafafa"; // TODO
-
-
-        // get the root page id
-        $rootPageID = 251;     // TODO
         // initialize the fileadmin path
         $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID;     // TODO include HP1/2
-
-
 
 
         if (!file_exists( $path . "_header.css")){
@@ -336,19 +309,51 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             // -----------
             // header
             $fileString = file_get_contents($templatePath . "header.css");
-            $colorStart = $this->getStart($fileString, "div.site-header");
-            $colorEnd = $this->getEnd($fileString, $colorStart);
 
-            $editedFileString = substr($fileString, 0, $colorStart) . $headerColor . substr($fileString, $colorEnd);
+            $start = strpos($fileString, "body");
+            $fontSelector = strpos($fileString, "font-family:", $start);
+            $fontStart = strpos($fileString, " ", $fontSelector)+1;
+            $fontEnd = strpos($fileString, ";", $fontStart);
+
+            $editedFileString = substr($fileString, 0, $fontStart) . $font . substr($fileString, $fontEnd);
+
+
+            $hp1_colorStart = $this->getStart($editedFileString, "div.site-header-hp1");
+            $hp1_colorEnd = $this->getEnd($editedFileString, $hp1_colorStart);
+
+            $editedFileString = substr($editedFileString, 0, $hp1_colorStart) . $map['header_homepage1'] . substr($editedFileString, $hp1_colorEnd);
+
+            $hp2_colorStart = $this->getStart($editedFileString, "div.site-header-hp2");
+            $hp2_colorEnd = $this->getEnd($editedFileString, $hp2_colorStart);
+
+            $editedFileString = substr($editedFileString, 0, $hp2_colorStart) . $map['header_homepage2'] . substr($editedFileString, $hp2_colorEnd);
+
+
+            $colorStart = $this->getStart($editedFileString, "div.site-header");
+            $colorEnd = $this->getEnd($editedFileString, $colorStart);
+
+            $editedFileString = substr($editedFileString, 0, $colorStart) . $map['header_homepage2'] . substr($editedFileString, $colorEnd);
             file_put_contents($path . "_header.css", $editedFileString);
 
 
             // footer
             $fileString = file_get_contents($templatePath . "footer.css");
-            $colorStart = $this->getStart($fileString, "div.site-footer");
-            $colorEnd = $this->getEnd($fileString, $colorStart);
+            $hp1_colorStart = $this->getStart($fileString, "div.site-footer-hp1");
+            $hp1_colorEnd = $this->getEnd($fileString, $hp1_colorStart);
 
-            $editedFileString = substr($fileString, 0, $colorStart) . $footerColor . substr($fileString, $colorEnd);
+            $editedFileString = substr($fileString, 0, $hp1_colorStart) . $map['footer_homepage1'] . substr($fileString, $hp1_colorEnd);
+
+
+            $hp2_colorStart = $this->getStart($editedFileString, "div.site-footer-hp2");
+            $hp2_colorEnd = $this->getEnd($editedFileString, $hp2_colorStart);
+
+            $editedFileString = substr($editedFileString, 0, $hp2_colorStart) . $map['footer_homepage2'] . substr($editedFileString, $hp2_colorEnd);
+
+
+            $colorStart = $this->getStart($editedFileString, "div.site-footer");
+            $colorEnd = $this->getEnd($editedFileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $map['footer_homepage2'] . substr($editedFileString, $colorEnd);
             file_put_contents($path . "_footer.css", $editedFileString);
 
 
@@ -363,9 +368,9 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $colorRightStart = $this->getStart($fileString, "div .hp1_unten_rechts");
             $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
 
-            $editedFileString = substr($fileString, 0, $colorTopStart) . $hp1Main_top_ContentColor . substr($fileString, $colorTopEnd);
-            $editedFileString = substr($editedFileString, 0, $colorLeftStart) . $hp1Main_left_ContentColor . substr($fileString, $colorLeftEnd);
-            $editedFileString = substr($editedFileString, 0, $colorRightStart) . $hp1Main_right_ContentColor . substr($fileString, $colorRightEnd);
+            $editedFileString = substr($fileString, 0, $colorTopStart) . $map['homepage1_homepage1_main1'] . substr($fileString, $colorTopEnd);
+            $editedFileString = substr($editedFileString, 0, $colorLeftStart) . $map['homepage1_homepage1_main2'] . substr($fileString, $colorLeftEnd);
+            $editedFileString = substr($editedFileString, 0, $colorRightStart) . $map['homepage1_homepage1_main3'] . substr($fileString, $colorRightEnd);
             file_put_contents($path . "_homepage1.css", $editedFileString);
 
 
@@ -378,8 +383,8 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $colorRightStart = $this->getStart($fileString, "div .hp2_rechts");
             $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
 
-            $editedFileString = substr($fileString, 0, $colorLeftStart) . $hp2Main_left_ContentColor . substr($fileString, $colorLeftEnd);
-            $editedFileString= substr($editedFileString, 0, $colorRightStart) . $hp2Main_right_ContentColor . substr($fileString, $colorRightEnd);
+            $editedFileString = substr($fileString, 0, $colorLeftStart) . $map['homepage2_homepage2_main1'] . substr($fileString, $colorLeftEnd);
+            $editedFileString= substr($editedFileString, 0, $colorRightStart) . $map['homepage2_homepage2_main2'] . substr($fileString, $colorRightEnd);
             file_put_contents($path . "_homepage2.css", $editedFileString);
 
 
@@ -413,13 +418,13 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
 
             // construct the output string (there is probably a better way to do this if there's a method to specify substr between 2 ints)
-            $editedFileString = substr($fileString, 0, $_1ColumnStart) . $_1ColumnContentColor . substr($fileString, $_1ColumnEnd);
-            $editedFileString = substr($editedFileString, 0, $_50_50_left_start) . $_50_50_left_ContentColor . substr($fileString, $_50_50_left_end);
-            $editedFileString = substr($editedFileString, 0, $_50_50_right_start) . $_50_50_right_ContentColor . substr($fileString, $_50_50_right_end);
-            $editedFileString = substr($editedFileString, 0, $_30_70_left_start) . $_30_70_left_ContentColor . substr($fileString, $_30_70_left_end);
-            $editedFileString = substr($editedFileString, 0, $_30_70_right_start) . $_30_70_right_ContentColor . substr($fileString, $_30_70_right_end);
-            $editedFileString = substr($editedFileString, 0, $_70_30_left_start) . $_70_30_left_ContentColor . substr($fileString, $_70_30_left_end);
-            $editedFileString = substr($editedFileString, 0, $_70_30_right_start) . $_70_30_right_ContentColor . substr($fileString, $_70_30_right_end);
+            $editedFileString = substr($fileString, 0, $_1ColumnStart) . $map['1spaltig_normal'] . substr($fileString, $_1ColumnEnd);
+            $editedFileString = substr($editedFileString, 0, $_50_50_left_start) . $map['2Spalten-50-50_main_links'] . substr($fileString, $_50_50_left_end);
+            $editedFileString = substr($editedFileString, 0, $_50_50_right_start) . $map['2Spalten-50-50_main_rechts'] . substr($fileString, $_50_50_right_end);
+            $editedFileString = substr($editedFileString, 0, $_30_70_left_start) . $map['2Spalten-30-70_main_links'] . substr($fileString, $_30_70_left_end);
+            $editedFileString = substr($editedFileString, 0, $_30_70_right_start) . $map['2Spalten-30-70_main_rechts'] . substr($fileString, $_30_70_right_end);
+            $editedFileString = substr($editedFileString, 0, $_70_30_left_start) . $map['2Spalten-70-30_main_links'] . substr($fileString, $_70_30_left_end);
+            $editedFileString = substr($editedFileString, 0, $_70_30_right_start) . $map['2Spalten-70-30_main_rechts'] . substr($fileString, $_70_30_right_end);
 
             // write file to fileadmin
             file_put_contents($path . "_normal.css", $editedFileString);
@@ -434,19 +439,55 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             // -----------
             // header
             $fileString = file_get_contents($path . "_header.css");
-            $colorStart = $this->getStart($fileString, "div.site-header");
-            $colorEnd = $this->getEnd($fileString, $colorStart);
 
-            $editedFileString = substr($fileString, 0, $colorStart) . $headerColor . substr($fileString, $colorEnd);
+
+            $start = strpos($fileString, "body");
+            $fontSelector = strpos($fileString, "font-family:", $start);
+            $fontStart = strpos($fileString, " ", $fontSelector)+1;
+            $fontEnd = strpos($fileString, ";", $fontStart);
+
+
+            $editedFileString = substr($fileString, 0, $fontStart) . $font . substr($fileString, $fontEnd);
+
+
+
+
+            $hp1_colorStart = $this->getStart($editedFileString, "div.site-header-hp1");
+            $hp1_colorEnd = $this->getEnd($editedFileString, $hp1_colorStart);
+
+            $editedFileString = substr($editedFileString, 0, $hp1_colorStart) . $map['header_homepage1'] . substr($editedFileString, $hp1_colorEnd);
+
+            $hp2_colorStart = $this->getStart($editedFileString, "div.site-header-hp2");
+            $hp2_colorEnd = $this->getEnd($editedFileString, $hp2_colorStart);
+
+            $editedFileString = substr($editedFileString, 0, $hp2_colorStart) . $map['header_homepage2'] . substr($editedFileString, $hp2_colorEnd);
+
+
+            $colorStart = $this->getStart($editedFileString, "div.site-header");
+            $colorEnd = $this->getEnd($editedFileString, $colorStart);
+
+            $editedFileString = substr($editedFileString, 0, $colorStart) . $map['header_homepage2'] . substr($editedFileString, $colorEnd);
             file_put_contents($path . "_header.css", $editedFileString);
 
 
             // footer
             $fileString = file_get_contents($path . "_footer.css");
-            $colorStart = $this->getStart($fileString, "div.site-footer");
-            $colorEnd = $this->getEnd($fileString, $colorStart);
+            $hp1_colorStart = $this->getStart($fileString, "div.site-footer-hp1");
+            $hp1_colorEnd = $this->getEnd($fileString, $hp1_colorStart);
 
-            $editedFileString = substr($fileString, 0, $colorStart) . $footerColor . substr($fileString, $colorEnd);
+            $editedFileString = substr($fileString, 0, $hp1_colorStart) . $map['footer_homepage1'] . substr($fileString, $hp1_colorEnd);
+
+
+            $hp2_colorStart = $this->getStart($editedFileString, "div.site-footer-hp2");
+            $hp2_colorEnd = $this->getEnd($editedFileString, $hp2_colorStart);
+
+            $editedFileString = substr($editedFileString, 0, $hp2_colorStart) . $map['footer_homepage2'] . substr($editedFileString, $hp2_colorEnd);
+
+
+            $colorStart = $this->getStart($editedFileString, "div.site-footer");
+            $colorEnd = $this->getEnd($editedFileString, $colorStart);
+
+            $editedFileString = substr($fileString, 0, $colorStart) . $map['footer_homepage2'] . substr($editedFileString, $colorEnd);
             file_put_contents($path . "_footer.css", $editedFileString);
 
 
@@ -461,9 +502,9 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $colorRightStart = $this->getStart($fileString, "div .hp1_unten_rechts");
             $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
 
-            $editedFileString = substr($fileString, 0, $colorTopStart) . $hp1Main_top_ContentColor . substr($fileString, $colorTopEnd);
-            $editedFileString = substr($editedFileString, 0, $colorLeftStart) . $hp1Main_left_ContentColor . substr($fileString, $colorLeftEnd);
-            $editedFileString = substr($editedFileString, 0, $colorRightStart) . $hp1Main_right_ContentColor . substr($fileString, $colorRightEnd);
+            $editedFileString = substr($fileString, 0, $colorTopStart) . $map['homepage1_homepage1_main1'] . substr($fileString, $colorTopEnd);
+            $editedFileString = substr($editedFileString, 0, $colorLeftStart) . $map['homepage1_homepage1_main2'] . substr($fileString, $colorLeftEnd);
+            $editedFileString = substr($editedFileString, 0, $colorRightStart) . $map['homepage1_homepage1_main3'] . substr($fileString, $colorRightEnd);
             file_put_contents($path . "_homepage1.css", $editedFileString);
 
 
@@ -475,8 +516,8 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $colorRightStart = $this->getStart($fileString, "div .hp2_rechts");
             $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
 
-            $editedFileString = substr($fileString, 0, $colorLeftStart) . $hp2Main_left_ContentColor . substr($fileString, $colorLeftEnd);
-            $editedFileString= substr($editedFileString, 0, $colorRightStart) . $hp2Main_right_ContentColor . substr($fileString, $colorRightEnd);
+            $editedFileString = substr($fileString, 0, $colorLeftStart) . $map['homepage2_homepage2_main1'] . substr($fileString, $colorLeftEnd);
+            $editedFileString= substr($editedFileString, 0, $colorRightStart) . $map['homepage2_homepage2_main2'] . substr($fileString, $colorRightEnd);
             file_put_contents($path . "_homepage2.css", $editedFileString);
 
 
@@ -510,20 +551,20 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
 
             // construct the output string (there is probably a better way to do this if there's a method to specify substr between 2 ints)
-            $editedFileString = substr($fileString, 0, $_1ColumnStart) . $_1ColumnContentColor . substr($fileString, $_1ColumnEnd);
-            $editedFileString = substr($editedFileString, 0, $_50_50_left_start) . $_50_50_left_ContentColor . substr($fileString, $_50_50_left_end);
-            $editedFileString = substr($editedFileString, 0, $_50_50_right_start) . $_50_50_right_ContentColor . substr($fileString, $_50_50_right_end);
-            $editedFileString = substr($editedFileString, 0, $_30_70_left_start) . $_30_70_left_ContentColor . substr($fileString, $_30_70_left_end);
-            $editedFileString = substr($editedFileString, 0, $_30_70_right_start) . $_30_70_right_ContentColor . substr($fileString, $_30_70_right_end);
-            $editedFileString = substr($editedFileString, 0, $_70_30_left_start) . $_70_30_left_ContentColor . substr($fileString, $_70_30_left_end);
-            $editedFileString = substr($editedFileString, 0, $_70_30_right_start) . $_70_30_right_ContentColor . substr($fileString, $_70_30_right_end);
+            $editedFileString = substr($fileString, 0, $_1ColumnStart) . $map['1spaltig_normal'] . substr($fileString, $_1ColumnEnd);
+            $editedFileString = substr($editedFileString, 0, $_50_50_left_start) . $map['2Spalten-50-50_main_links'] . substr($fileString, $_50_50_left_end);
+            $editedFileString = substr($editedFileString, 0, $_50_50_right_start) . $map['2Spalten-50-50_main_rechts'] . substr($fileString, $_50_50_right_end);
+            $editedFileString = substr($editedFileString, 0, $_30_70_left_start) . $map['2Spalten-30-70_main_links'] . substr($fileString, $_30_70_left_end);
+            $editedFileString = substr($editedFileString, 0, $_30_70_right_start) . $map['2Spalten-30-70_main_rechts'] . substr($fileString, $_30_70_right_end);
+            $editedFileString = substr($editedFileString, 0, $_70_30_left_start) . $map['2Spalten-70-30_main_links'] . substr($fileString, $_70_30_left_end);
+            $editedFileString = substr($editedFileString, 0, $_70_30_right_start) . $map['2Spalten-70-30_main_rechts'] . substr($fileString, $_70_30_right_end);
 
             // write file to fileadmin
             file_put_contents($path . "_normal.css", $editedFileString);
         }
 
 
-        $data = ['result' => $map];
+        $data = ['result' => 'Doing Ajax Stuff'];
         return $this->jsonResponse(json_encode($data));
     }
 

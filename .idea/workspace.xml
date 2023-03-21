@@ -16,10 +16,16 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Finalizing_Interface" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-minor patch">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-deleted header.css and footer.css since they are no longer needed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
@@ -44,7 +50,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Finalizing_controller_view_link" />
+        <entry key="$PROJECT_DIR$" value="Finalizing_Interface" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -148,7 +154,49 @@
       <option name="project" value="LOCAL" />
       <updated>1678612655130</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="-presentation ready">
+      <created>1679367203652</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679367203652</updated>
+    </task>
+    <task id="LOCAL-00007" summary="-added font functionality">
+      <created>1679370516968</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679370516968</updated>
+    </task>
+    <task id="LOCAL-00008" summary="-shortened color allocation in doSomething">
+      <created>1679371013252</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679371013252</updated>
+    </task>
+    <task id="LOCAL-00009" summary="-some code cleanup&#10;-added additional comments">
+      <created>1679371935646</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679371935646</updated>
+    </task>
+    <task id="LOCAL-00010" summary="-sorted fonts alphabetically&#10;-made the first font in the css file the default selected option">
+      <created>1679373422175</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679373422175</updated>
+    </task>
+    <task id="LOCAL-00011" summary="-deleted header.css and footer.css since they are no longer needed">
+      <created>1679373533544</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1679373533544</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,7 +207,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Finalizing_Interface" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -175,7 +235,13 @@
     <MESSAGE value="-Initialized colorMap" />
     <MESSAGE value="-Changed absolute path to relative path" />
     <MESSAGE value="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction" />
-    <option name="LAST_COMMIT_MESSAGE" value="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction" />
+    <MESSAGE value="-presentation ready" />
+    <MESSAGE value="-added font functionality" />
+    <MESSAGE value="-shortened color allocation in doSomething" />
+    <MESSAGE value="-some code cleanup&#10;-added additional comments" />
+    <MESSAGE value="-sorted fonts alphabetically&#10;-made the first font in the css file the default selected option" />
+    <MESSAGE value="-deleted header.css and footer.css since they are no longer needed" />
+    <option name="LAST_COMMIT_MESSAGE" value="-deleted header.css and footer.css since they are no longer needed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
@@ -198,14 +264,18 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="994" y="405" key="Github.UntrackedFilesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620341000" />
+    <state x="987" y="402" key="RollbackChangesDialog" timestamp="1679369095531">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="987" y="402" key="RollbackChangesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1679369095531" />
     <state x="781" y="345" key="SettingsEditor" timestamp="1674220510734">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1674220510734" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1678612677058">
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1679329959621">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1678612677058" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1679329959621" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1673628204397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

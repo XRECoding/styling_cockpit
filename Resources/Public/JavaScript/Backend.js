@@ -2,8 +2,7 @@ var colorPickerValue =  document.getElementById("color-picker").getAttribute('va
 let firstHomepageChild = document.getElementById("homepage").firstElementChild;
 let firstGridChild = document.getElementById("grid").firstElementChild;
 const coloreMap = new Map();
-
-
+var selectedFont = document.getElementById("fontOption").options[document.getElementById("fontOption").selectedIndex].text;
 
 
 
@@ -23,8 +22,10 @@ function hex(x) {
 
 // header
 coloreMap.set("header_homepage1", rgb2hex(document.getElementById("homepage1_header").style.backgroundColor));
+coloreMap.set("header_homepage2", rgb2hex(document.getElementById("homepage2_header").style.backgroundColor));
 //footer
 coloreMap.set("footer_homepage1", rgb2hex(document.getElementById("homepage1footer").style.backgroundColor));
+coloreMap.set("footer_homepage2", rgb2hex(document.getElementById("homepage2footer").style.backgroundColor));
 // hp1
 coloreMap.set("homepage1_homepage1_main1", rgb2hex(document.getElementById("homepage1_homepage1_main1").style.backgroundColor));
 coloreMap.set("homepage1_homepage1_main2", rgb2hex(document.getElementById("homepage1_homepage1_main2").style.backgroundColor));
@@ -43,15 +44,6 @@ coloreMap.set("2Spalten-50-50_main_rechts", rgb2hex(document.getElementById("2Sp
 // 2 spalten 70/30
 coloreMap.set("2Spalten-70-30_main_links", rgb2hex(document.getElementById("2Spalten-70-30_main_links").style.backgroundColor));
 coloreMap.set("2Spalten-70-30_main_rechts", rgb2hex(document.getElementById("2Spalten-70-30_main_rechts").style.backgroundColor));
-
-
-console.log(coloreMap);
-
-
-
-
-
-
 
 
 firstHomepageChild.style.visibility = "visible";
@@ -85,9 +77,6 @@ function onClick(div) {
     coloreMap.set(div.getAttribute("name"), colorPickerValue);
 }
 
-function alertColor(){
-    alert(colorPickerValue.toString());
-}
 
 /**
  * {@changeHomepage}
@@ -144,8 +133,9 @@ require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
     let writeCSS = function (element){
         // making array because ajax doesn't accept map
         const arr = Array.from(coloreMap);
+        var pageID = document.getElementById("pageID").value;
         new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
-            .withQueryArguments({colorArray: arr})
+            .withQueryArguments({colorArray: arr, pageID: pageID, font: selectedFont})
             .get()
             .then(async function (response) {
                 const resolved = await response.resolve();
@@ -174,7 +164,7 @@ function getCurrentHomepage() {
  */
 function changeFont() {
     var e = document.getElementById("fontOption");
-    var selectedFont = e.options[e.selectedIndex].text;
-    console.log(selectedFont);
+    selectedFont = e.options[e.selectedIndex].text;
+    //console.log(selectedFont);
 }
 
