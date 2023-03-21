@@ -2,8 +2,7 @@ var colorPickerValue =  document.getElementById("color-picker").getAttribute('va
 let firstHomepageChild = document.getElementById("homepage").firstElementChild;
 let firstGridChild = document.getElementById("grid").firstElementChild;
 const coloreMap = new Map();
-
-
+var selectedFont = document.getElementById("fontOption").options[document.getElementById("fontOption").selectedIndex].text;
 
 
 
@@ -148,7 +147,7 @@ require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
         const arr = Array.from(coloreMap);
         var pageID = document.getElementById("pageID").value;
         new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
-            .withQueryArguments({colorArray: arr, pageID: pageID})
+            .withQueryArguments({colorArray: arr, pageID: pageID, font: selectedFont})
             .get()
             .then(async function (response) {
                 const resolved = await response.resolve();
@@ -177,7 +176,7 @@ function getCurrentHomepage() {
  */
 function changeFont() {
     var e = document.getElementById("fontOption");
-    var selectedFont = e.options[e.selectedIndex].text;
-    console.log(selectedFont);
+    selectedFont = e.options[e.selectedIndex].text;
+    //console.log(selectedFont);
 }
 

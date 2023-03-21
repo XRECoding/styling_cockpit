@@ -25,10 +25,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-minor patch">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-presentation ready">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678612655130</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="-presentation ready">
+      <created>1679367203652</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679367203652</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +200,8 @@
     <MESSAGE value="-Initialized colorMap" />
     <MESSAGE value="-Changed absolute path to relative path" />
     <MESSAGE value="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction" />
-    <option name="LAST_COMMIT_MESSAGE" value="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction" />
+    <MESSAGE value="-presentation ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="-presentation ready" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
@@ -217,6 +224,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="994" y="405" key="Github.UntrackedFilesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620341000" />
+    <state x="987" y="402" key="RollbackChangesDialog" timestamp="1679369095531">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="987" y="402" key="RollbackChangesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1679369095531" />
     <state x="781" y="345" key="SettingsEditor" timestamp="1674220510734">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
