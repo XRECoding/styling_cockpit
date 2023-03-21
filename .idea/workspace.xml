@@ -25,7 +25,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-added font functionality">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-shortened color allocation in doSomething">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679370516968</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="-shortened color allocation in doSomething">
+      <created>1679371013252</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679371013252</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +215,8 @@
     <MESSAGE value="-deleted unnecessary comment from header.css&#10;-made all HP Layouts editable (Hp1, HP2)&#10;-made all HP Content Layouts editable (HP1Main, HP2Main)&#10;-made all Backend Layouts editable (1Column, 50_50_left, 50_50_right, 30_70_left, 30_70_right, 70_30_left, 70_30_right)&#10;-refactored doSomethingAction by creating getStart and getEnd functions&#10;-optimized remaining code in doSomethingAction&#10;-added comments to doSomethingAction" />
     <MESSAGE value="-presentation ready" />
     <MESSAGE value="-added font functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="-added font functionality" />
+    <MESSAGE value="-shortened color allocation in doSomething" />
+    <option name="LAST_COMMIT_MESSAGE" value="-shortened color allocation in doSomething" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">

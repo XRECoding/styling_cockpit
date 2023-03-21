@@ -40,45 +40,28 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $PageTSconfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($this->pObj->id);
         $websiteID = $PageTSconfig['TSFE.']['constants.']['websiteConfig.'];
 
-        // ------------- works dont change----------------------------
-
-        // getting the background colors for all elements
+        // getting current page ID
         $rootPageID = intVal($_GET['id']);
         $this->view->assign("rootPageID", $rootPageID);
-        // setting path to fileadmin path of extension
-        $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID . "_";     // TODO include HP1/2
 
+        // checking if selected page is root
         $rootline = GeneralUtility::makeInstance(RootlineUtility::class, GeneralUtility::_GP('id'));
         $rootlinePages = $rootline->get();
 
         $is_siteroot =  array_values($rootlinePages)[0]["is_siteroot"];
         $this->view->assign("is_siteroot", $is_siteroot);
 
-
-
+        // setting path to fileadmin path of extension
+        $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID . "_";     // TODO include HP1/2
         // if the file doesn't exist we use the path to typo3_template_baukasten instead (=default)
         if (!file_exists( $path . "header.css")){
             $path = dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/";    // TODO include HP1/2
         }
 
-        // header
-        $fileString = file_get_contents($path . "header.css");
-        $colorStart = $this->getStart($fileString, "div.site-header");
-        $colorEnd = $this->getEnd($fileString, $colorStart);
 
-        $headerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
-
-
-        // footer
-        $fileString = file_get_contents($path . "footer.css");
-        $colorStart = $this->getStart($fileString, "div.site-footer");
-        $colorEnd = $this->getEnd($fileString, $colorStart);
-
-        $footerColor = substr($fileString, $colorStart, $colorEnd - $colorStart);
-
-        // ----------doesnt work yet-------------------------------
+        // getting all background colors of all elements and saving them in the map
+        // header and footer are excluded because they are constructed separately
         $map = array();
-
         // header
         $fileString = file_get_contents($path . "header.css");
         $colorStart = $this->getStart($fileString, "div.site-header-hp1");
@@ -259,9 +242,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 }
             }
         }
-        
-        
-        $pid = intVal($_GET['id']);
+
 
         $this->view->assign("homepageArray", $homepageArray);
         $this->view->assign("gridArray", $gridArray);
@@ -326,7 +307,6 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $hp1_colorStart = $this->getStart($editedFileString, "div.site-header-hp1");
             $hp1_colorEnd = $this->getEnd($editedFileString, $hp1_colorStart);
 
-//            $editedFileString = substr($fileString, 0, $hp1_colorStart) . $hp1_headerColor . substr($fileString, $hp1_colorEnd);  OLD OLD OLD
             $editedFileString = substr($editedFileString, 0, $hp1_colorStart) . $map['header_homepage1'] . substr($editedFileString, $hp1_colorEnd);
 
             $hp2_colorStart = $this->getStart($editedFileString, "div.site-header-hp2");
@@ -576,7 +556,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
 
 
-        $data = ['result' => $map];
+        $data = ['result' => 'Doing Ajax Stuff'];
         return $this->jsonResponse(json_encode($data));
     }
 
