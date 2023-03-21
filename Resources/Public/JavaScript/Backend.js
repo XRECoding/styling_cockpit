@@ -23,8 +23,10 @@ function hex(x) {
 
 // header
 coloreMap.set("header_homepage1", rgb2hex(document.getElementById("homepage1_header").style.backgroundColor));
+coloreMap.set("header_homepage2", rgb2hex(document.getElementById("homepage2_header").style.backgroundColor));
 //footer
 coloreMap.set("footer_homepage1", rgb2hex(document.getElementById("homepage1footer").style.backgroundColor));
+coloreMap.set("footer_homepage2", rgb2hex(document.getElementById("homepage2footer").style.backgroundColor));
 // hp1
 coloreMap.set("homepage1_homepage1_main1", rgb2hex(document.getElementById("homepage1_homepage1_main1").style.backgroundColor));
 coloreMap.set("homepage1_homepage1_main2", rgb2hex(document.getElementById("homepage1_homepage1_main2").style.backgroundColor));
@@ -144,8 +146,9 @@ require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
     let writeCSS = function (element){
         // making array because ajax doesn't accept map
         const arr = Array.from(coloreMap);
+        var pageID = document.getElementById("pageID").value;
         new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
-            .withQueryArguments({colorArray: arr})
+            .withQueryArguments({colorArray: arr, pageID: pageID})
             .get()
             .then(async function (response) {
                 const resolved = await response.resolve();

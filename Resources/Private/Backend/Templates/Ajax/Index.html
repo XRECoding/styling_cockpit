@@ -27,6 +27,7 @@
     <f:if condition="{is_siteroot}==1">
     <f:then>
         <h1>Edit Page</h1>  <!-- Title TBD -->
+        <button id="pageID" value="{rootPageID}" style="display: none"></button>
         <div class="typo3-TCEforms">
             <a role="tabpanel">
                 <ul class="nav nav-tabs t3js-tabs" role="tablist">
@@ -62,7 +63,7 @@
                     </li>
 
                     <button class="testButton">
-                        AjaxButton
+                        Save
                     </button>
 
                 </ul>
