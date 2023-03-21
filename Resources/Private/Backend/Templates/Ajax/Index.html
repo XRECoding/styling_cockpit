@@ -26,6 +26,7 @@
 
     <f:if condition="{is_siteroot}==1">
     <f:then>
+
         <h1>Edit Page</h1>  <!-- Title TBD -->
         <button id="pageID" value="{rootPageID}" style="display: none"></button>
         <div class="typo3-TCEforms">
@@ -40,24 +41,16 @@
                     <li role="presentation" class="t3js-tabmenu-item nav-item">
                         <a class="nav-link">
                             <select id="fontOption" class="form-select form-control-adapt" onchange="changeFont()">
-                                <option>Serif</option>
-                                <option>Sans-serif</option>
-                                <option>Monospace</option>
-                                <option>Cursive</option>
-                                <option>Fantasy</option>
-                                <option>Times New Roman</option>
-                                <option>Georgia</option>
-                                <option>Garamond</option>
-                                <option>Arial</option>
-                                <option>Verdana</option>
-                                <option>Helvetica</option>
-                                <option>Courier New</option>
-                                <option>Lucida Console</option>
-                                <option>Monaco</option>
-                                <option>Brush Script MT</option>
-                                <option>Lucida Handwriting</option>
-                                <option>Copperplate</option>
-                                <option>Papyrus</option>
+                                <f:for each="{fonts}" as="font">
+                                    <f:if condition="{font} == {selectedFont}">
+                                        <f:then>
+                                            <option selected>{font}</option>
+                                        </f:then>
+                                        <f:else>
+                                            <option>{font}</option>
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
                             </select>
                         </a>
                     </li>

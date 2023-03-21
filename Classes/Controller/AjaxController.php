@@ -58,6 +58,24 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $path = dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/";    // TODO include HP1/2
         }
 
+        // getting first font
+        $fileString = file_get_contents($path . "header.css");
+
+        $start = strpos($fileString, "body");
+        $colorSelector = strpos($fileString, "font-family:", $start);
+        $fontStart = strpos($fileString, " ", $colorSelector)+1;
+
+        $fontEnd = strpos($fileString, ";", $fontStart);
+        if (str_contains(substr($fileString, $fontStart, $fontEnd - $fontStart), ",")){
+            $fontEnd = strpos($fileString, ",", $fontStart);
+        }
+
+        $font = substr($fileString, $fontStart, $fontEnd - $fontStart);
+        $this->view->assign("selectedFont", $font);
+
+        $this->view->assign("fonts", ["Arial", "Brush Script MT", "Copperplate", "Courier New", "Cursive", "Fantasy",
+            "Garamond", "Georgia", "Helvetica", "Lucida Console", "Lucida Handwriting", "Monaco", "Monospace",
+            "Papyrus", "Sans-serif", "Serif", "Times New Roman", "Verdana"]);
 
         // getting all background colors of all elements and saving them in the map
         // header and footer are excluded because they are constructed separately
