@@ -25,10 +25,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-some code cleanup&#10;-added additional comments">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-deleted header.css and footer.css since they are no longer needed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +182,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679371935646</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="-sorted fonts alphabetically&#10;-made the first font in the css file the default selected option">
+      <created>1679373422175</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679373422175</updated>
+    </task>
+    <task id="LOCAL-00011" summary="-deleted header.css and footer.css since they are no longer needed">
+      <created>1679373533544</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1679373533544</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +239,9 @@
     <MESSAGE value="-added font functionality" />
     <MESSAGE value="-shortened color allocation in doSomething" />
     <MESSAGE value="-some code cleanup&#10;-added additional comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="-some code cleanup&#10;-added additional comments" />
+    <MESSAGE value="-sorted fonts alphabetically&#10;-made the first font in the css file the default selected option" />
+    <MESSAGE value="-deleted header.css and footer.css since they are no longer needed" />
+    <option name="LAST_COMMIT_MESSAGE" value="-deleted header.css and footer.css since they are no longer needed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">

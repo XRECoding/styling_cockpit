@@ -310,16 +310,12 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             // header
             $fileString = file_get_contents($templatePath . "header.css");
 
-
             $start = strpos($fileString, "body");
             $fontSelector = strpos($fileString, "font-family:", $start);
             $fontStart = strpos($fileString, " ", $fontSelector)+1;
             $fontEnd = strpos($fileString, ";", $fontStart);
 
-
             $editedFileString = substr($fileString, 0, $fontStart) . $font . substr($fileString, $fontEnd);
-
-
 
 
             $hp1_colorStart = $this->getStart($editedFileString, "div.site-header-hp1");
@@ -338,12 +334,6 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
             $editedFileString = substr($editedFileString, 0, $colorStart) . $map['header_homepage2'] . substr($editedFileString, $colorEnd);
             file_put_contents($path . "_header.css", $editedFileString);
-
-
-
-
-
-
 
 
             // footer

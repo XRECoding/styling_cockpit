@@ -46,15 +46,6 @@ coloreMap.set("2Spalten-70-30_main_links", rgb2hex(document.getElementById("2Spa
 coloreMap.set("2Spalten-70-30_main_rechts", rgb2hex(document.getElementById("2Spalten-70-30_main_rechts").style.backgroundColor));
 
 
-console.log(coloreMap);
-
-
-
-
-
-
-
-
 firstHomepageChild.style.visibility = "visible";
 var lastHomepage = firstHomepageChild.id;
 
@@ -86,9 +77,6 @@ function onClick(div) {
     coloreMap.set(div.getAttribute("name"), colorPickerValue);
 }
 
-function alertColor(){
-    alert(colorPickerValue.toString());
-}
 
 /**
  * {@changeHomepage}
