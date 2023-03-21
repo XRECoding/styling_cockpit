@@ -25,10 +25,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-deleted header.css and footer.css since they are no longer needed">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-deleted unused functions and code">
+      <change afterPath="$PROJECT_DIR$/Resources/Public/Icons/Logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/Public/Icons/LogoNew.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/Public/Icons/LogoRed.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ext_tables.php" beforeDir="false" afterPath="$PROJECT_DIR$/ext_tables.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +73,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Dokumente\XAMPP\htdocs\Studienprojekt\typo3conf\ext\styling_cockpit\Resources\Public\Icons" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Dokumente\XAMPP\htdocs\Studienprojekt\typo3conf\ext\styling_cockpit\Resources\Public\Css" />
     </key>
@@ -118,6 +123,7 @@
       <workItem from="1678530610308" duration="665000" />
       <workItem from="1678599283950" duration="12356000" />
       <workItem from="1678780827449" duration="6360000" />
+      <workItem from="1679405881397" duration="3704000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented Layout">
       <created>1673629991202</created>
@@ -196,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679373533544</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="-deleted unused functions and code">
+      <created>1679377088683</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1679377088683</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +254,8 @@
     <MESSAGE value="-some code cleanup&#10;-added additional comments" />
     <MESSAGE value="-sorted fonts alphabetically&#10;-made the first font in the css file the default selected option" />
     <MESSAGE value="-deleted header.css and footer.css since they are no longer needed" />
-    <option name="LAST_COMMIT_MESSAGE" value="-deleted header.css and footer.css since they are no longer needed" />
+    <MESSAGE value="-deleted unused functions and code" />
+    <option name="LAST_COMMIT_MESSAGE" value="-deleted unused functions and code" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
@@ -252,10 +266,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1675063530354" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1678925778690">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1679405919591">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1678925778690" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1679405919591" />
     <state x="1146" y="598" key="Github.ShareDialog" timestamp="1673620331426">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -264,6 +278,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="994" y="405" key="Github.UntrackedFilesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1673620341000" />
+    <state x="939" y="423" key="NewPhpClassDialog" timestamp="1679406482581">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="939" y="423" key="NewPhpClassDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1679406482581" />
     <state x="987" y="402" key="RollbackChangesDialog" timestamp="1679369095531">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -272,17 +290,17 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1674220510734" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1679329959621">
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1679377102534">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1679329959621" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1679377102534" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1673628204397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1673628204397" />
-    <state x="987" y="404" width="585" height="592" key="find.popup" timestamp="1673621158424">
+    <state x="987" y="404" width="585" height="592" key="find.popup" timestamp="1679406605757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="987" y="404" width="585" height="592" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1673621158424" />
+    <state x="987" y="404" width="585" height="592" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1679406605757" />
   </component>
 </project>
