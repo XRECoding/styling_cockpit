@@ -12,7 +12,7 @@ defined('TYPO3') || die();
         ],
         [
             'access' => 'user,group',
-            'icon'   => 'EXT:styling_cockpit/Resources/Public/Icons/LogoNew.jpeg',
+            'icon'   => 'EXT:styling_cockpit/Resources/Public/Icons/Logo.jpeg',
             'labels' => 'LLL:EXT:styling_cockpit/Resources/Private/Language/locallang_backend.xlf',
         ]
     );
