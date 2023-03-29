@@ -101,3 +101,16 @@ function changeFont() {
     var selectedFont = e.options[e.selectedIndex].text;
     console.log(selectedFont);
 }
+
+function changeTextSize() {
+    var e = document.getElementById("textSizeOption");
+    var selectedTextSize = e.options[e.selectedIndex].text;
+    console.log(selectedTextSize);
+}
+
+function changeTextAlignment() {
+    var e = document.getElementById("textAlignmentOption");
+    var selectedtextAlignment = e.options[e.selectedIndex].text;
+    console.log(selectedtextAlignment);
+}
+
