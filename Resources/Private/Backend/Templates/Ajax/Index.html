@@ -58,13 +58,16 @@
                     <li role="presentation" class="t3js-tabmenu-item nav-item">
                         <a class="nav-link">
                             <select id="textSizeOption" class="form-select form-control-adapt" onchange="changeTextSize()">
-                                <option>8</option>
-                                <option>12</option>
-                                <option>16</option>
-                                <option>20</option>
-                                <option>24</option>
-                                <option>28</option>
-                                <option>32</option>
+                                <f:for each="{sizes}" as="size">
+                                    <f:if condition="{size} == {selectedSize}">
+                                        <f:then>
+                                            <option selected>{size}</option>
+                                        </f:then>
+                                        <f:else>
+                                            <option>{size}</option>
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
                             </select>
                         </a>
                     </li>
@@ -72,10 +75,16 @@
                     <li role="presentation" class="t3js-tabmenu-item nav-item">
                         <a class="nav-link">
                             <select id="textAlignmentOption" class="form-select form-control-adapt" onchange="changeTextAlignment()">
-                                <option>Left</option>
-                                <option>Right</option>
-                                <option>Center</option>
-                                <option>Justify</option>
+                                <f:for each="{alignments}" as="align">
+                                    <f:if condition="{align} == {selectedAlign}">
+                                        <f:then>
+                                            <option selected>{align}</option>
+                                        </f:then>
+                                        <f:else>
+                                            <option>{align}</option>
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
                             </select>
                         </a>
                     </li>

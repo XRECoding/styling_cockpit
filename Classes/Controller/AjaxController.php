@@ -58,12 +58,14 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $path = dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/";    // TODO include HP1/2
         }
 
-        // getting first font
+
+
+        // font
         $fileString = file_get_contents($path . "header.css");
 
         $start = strpos($fileString, "body");
-        $colorSelector = strpos($fileString, "font-family:", $start);
-        $fontStart = strpos($fileString, " ", $colorSelector)+1;
+        $fontSelector = strpos($fileString, "font-family:", $start);
+        $fontStart = strpos($fileString, " ", $fontSelector)+1;
 
         $fontEnd = strpos($fileString, ";", $fontStart);
         if (str_contains(substr($fileString, $fontStart, $fontEnd - $fontStart), ",")){
@@ -76,6 +78,38 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->view->assign("fonts", ["Arial", "Brush Script MT", "Copperplate", "Courier New", "Cursive", "Fantasy",
             "Garamond", "Georgia", "Helvetica", "Lucida Console", "Lucida Handwriting", "Monaco", "Monospace",
             "Papyrus", "Sans-serif", "Serif", "Times New Roman", "Verdana"]);
+
+
+
+        // text size
+        $fileString = file_get_contents($path . "header.css");
+
+        $start = strpos($fileString, "body");
+        $sizeSelector = strpos($fileString, "font-size:", $start);
+        $sizeStart = strpos($fileString, " ", $sizeSelector)+1;
+
+        $sizeEnd = strpos($fileString, "px;", $sizeStart);
+        $size = substr($fileString, $sizeStart, $sizeEnd - $sizeStart);
+        $this->view->assign("selectedSize", $size);
+
+        $this->view->assign("sizes", ["08", "12", "16", "20", "24", "28", "32"]);
+
+
+
+        // text alignment
+        $fileString = file_get_contents($path . "header.css");
+
+        $start = strpos($fileString, "body");
+        $alignSelector = strpos($fileString, "text-align:", $start);
+        $alignStart = strpos($fileString, " ", $alignSelector)+1;
+
+        $alignEnd = strpos($fileString, ";", $alignStart);
+        $align = substr($fileString, $alignStart, $alignEnd - $alignStart);
+        $this->view->assign("selectedAlign", $align);
+
+        $this->view->assign("alignments", ["Left", "Right", "Center", "Justify"]);
+
+
 
         // getting all background colors of all elements and saving them in the map
         // header and footer are excluded because they are constructed separately
@@ -288,6 +322,8 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $colorArray = $request->getQueryParams()['colorArray'] ?? null;
         $rootPageID = $request->getQueryParams()['pageID'] ?? null;
         $font = $request->getQueryParams()['font'] ?? null;
+        $size = $request->getQueryParams()['size'] ?? null;
+        $alignment = $request->getQueryParams()['alignment'] ?? null;
 
 
         $map = array();
@@ -339,6 +375,18 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $colorStart = $this->getStart($editedHeaderFileString, "div.site-header");
         $colorEnd = $this->getEnd($editedHeaderFileString, $colorStart);
         $editedHeaderFileString = substr($editedHeaderFileString, 0, $colorStart) . $map['header_homepage2'] . substr($editedHeaderFileString, $colorEnd);
+
+        // size
+        $sizeSelector = strpos($editedHeaderFileString, "font-size:", $start);
+        $sizeStart = strpos($editedHeaderFileString, " ", $sizeSelector)+1;
+        $sizeEnd = strpos($editedHeaderFileString, "px;", $sizeStart);
+        $editedHeaderFileString = substr($editedHeaderFileString, 0, $sizeStart) . $size . substr($editedHeaderFileString, $sizeEnd);
+
+        // size
+        $alignSelector = strpos($editedHeaderFileString, "text-align:", $start);
+        $alignStart = strpos($editedHeaderFileString, " ", $alignSelector)+1;
+        $alignEnd = strpos($editedHeaderFileString, ";", $alignStart);
+        $editedHeaderFileString = substr($editedHeaderFileString, 0, $alignStart) . $alignment . substr($editedHeaderFileString, $alignEnd);
 
 
 

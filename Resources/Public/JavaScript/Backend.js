@@ -141,7 +141,7 @@ require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
         const arr = Array.from(coloreMap);
         var pageID = document.getElementById("pageID").value;
         new AjaxRequest(TYPO3.settings.ajaxUrls.stylingcockpit_dosomething)
-            .withQueryArguments({colorArray: arr, pageID: pageID, font: selectedFont})
+            .withQueryArguments({colorArray: arr, pageID: pageID, font: selectedFont, size: selectedTextSize, alignment: selectedtextAlignment})
             .get()
             .then(async function (response) {
                 const resolved = await response.resolve();
