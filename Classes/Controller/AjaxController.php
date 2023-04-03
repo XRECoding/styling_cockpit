@@ -277,18 +277,6 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * This function saves the changes made in the styling cockpit to the corresponding css files
      * @param ServerRequestInterface $request
@@ -312,274 +300,148 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID . "_";     // TODO include HP1/2
 
 
-        if (!file_exists( $path . "header.css")){
+        // check if the corresponding file already exists in the fileadmin
+        // the path for loading / saving changes accordingly
+        $loadDefault = !file_exists( $path . "header.css");
+
+        if ($loadDefault){
             // set the path to the original templates
-            $templatePath = dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/";    // TODO include HP1/2
-
-
-            // -----------
-            // All elements are edited the same way
-            // 1. get content from original template
-            // 2. search where the background color starts & ends
-            // 3. create a file in fileadmin with the new colorcode
-            // backend layout colors are treated as a collective to get better I/O performance
-            // -----------
-            // header
-            $fileString = file_get_contents($templatePath . "header.css");
-
-            $start = strpos($fileString, "body");
-            $fontSelector = strpos($fileString, "font-family:", $start);
-            $fontStart = strpos($fileString, " ", $fontSelector)+1;
-            $fontEnd = strpos($fileString, ";", $fontStart);
-
-            $editedFileString = substr($fileString, 0, $fontStart) . $font . substr($fileString, $fontEnd);
-
-
-            $hp1_colorStart = $this->getStart($editedFileString, "div.site-header-hp1");
-            $hp1_colorEnd = $this->getEnd($editedFileString, $hp1_colorStart);
-
-            $editedFileString = substr($editedFileString, 0, $hp1_colorStart) . $map['header_homepage1'] . substr($editedFileString, $hp1_colorEnd);
-
-            $hp2_colorStart = $this->getStart($editedFileString, "div.site-header-hp2");
-            $hp2_colorEnd = $this->getEnd($editedFileString, $hp2_colorStart);
-
-            $editedFileString = substr($editedFileString, 0, $hp2_colorStart) . $map['header_homepage2'] . substr($editedFileString, $hp2_colorEnd);
-
-
-            $colorStart = $this->getStart($editedFileString, "div.site-header");
-            $colorEnd = $this->getEnd($editedFileString, $colorStart);
-
-            $editedFileString = substr($editedFileString, 0, $colorStart) . $map['header_homepage2'] . substr($editedFileString, $colorEnd);
-            file_put_contents($path . "_header.css", $editedFileString);
-
-
-            // footer
-            $fileString = file_get_contents($templatePath . "footer.css");
-            $hp1_colorStart = $this->getStart($fileString, "div.site-footer-hp1");
-            $hp1_colorEnd = $this->getEnd($fileString, $hp1_colorStart);
-
-            $editedFileString = substr($fileString, 0, $hp1_colorStart) . $map['footer_homepage1'] . substr($fileString, $hp1_colorEnd);
-
-
-            $hp2_colorStart = $this->getStart($editedFileString, "div.site-footer-hp2");
-            $hp2_colorEnd = $this->getEnd($editedFileString, $hp2_colorStart);
-
-            $editedFileString = substr($editedFileString, 0, $hp2_colorStart) . $map['footer_homepage2'] . substr($editedFileString, $hp2_colorEnd);
-
-
-            $colorStart = $this->getStart($editedFileString, "div.site-footer");
-            $colorEnd = $this->getEnd($editedFileString, $colorStart);
-
-            $editedFileString = substr($fileString, 0, $colorStart) . $map['footer_homepage2'] . substr($editedFileString, $colorEnd);
-            file_put_contents($path . "_footer.css", $editedFileString);
-
-
-            // HP1 Main Content
-            $fileString = file_get_contents($templatePath . "homepage1.css");
-            $colorTopStart = $this->getStart($fileString, "div .hp1_oben");
-            $colorTopEnd = $this->getEnd($fileString, $colorTopStart);
-
-            $colorLeftStart = $this->getStart($fileString, "div .hp1_unten_links");
-            $colorLeftEnd = $this->getEnd($fileString, $colorLeftStart);
-
-            $colorRightStart = $this->getStart($fileString, "div .hp1_unten_rechts");
-            $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
-
-            $editedFileString = substr($fileString, 0, $colorTopStart) . $map['homepage1_homepage1_main1'] . substr($fileString, $colorTopEnd);
-            $editedFileString = substr($editedFileString, 0, $colorLeftStart) . $map['homepage1_homepage1_main2'] . substr($fileString, $colorLeftEnd);
-            $editedFileString = substr($editedFileString, 0, $colorRightStart) . $map['homepage1_homepage1_main3'] . substr($fileString, $colorRightEnd);
-            file_put_contents($path . "_homepage1.css", $editedFileString);
-
-
-            // HP2 Main Content
-            $fileString = file_get_contents($templatePath . "homepage2.css");
-            $colorLeftStart = $this->getStart($fileString, "div .hp2_links");
-            $colorLeftEnd = $this->getEnd($fileString, $colorLeftStart);
-
-            $fileString = file_get_contents($templatePath . "homepage2.css");
-            $colorRightStart = $this->getStart($fileString, "div .hp2_rechts");
-            $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
-
-            $editedFileString = substr($fileString, 0, $colorLeftStart) . $map['homepage2_homepage2_main1'] . substr($fileString, $colorLeftEnd);
-            $editedFileString= substr($editedFileString, 0, $colorRightStart) . $map['homepage2_homepage2_main2'] . substr($fileString, $colorRightEnd);
-            file_put_contents($path . "_homepage2.css", $editedFileString);
-
-
-            // ----- backend layout -----
-            // get file content
-            $fileString = file_get_contents($templatePath . "normal.css");
-
-            // 1 column
-            $_1ColumnStart = $this->getStart($fileString, ".einspaltig_content");
-            $_1ColumnEnd = $this->getEnd($fileString, $_1ColumnStart);
-
-            // 50-50
-            $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left");
-            $_50_50_left_end = $this->getEnd($fileString, $_50_50_left_start);
-
-            $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right");
-            $_50_50_right_end = $this->getEnd($fileString, $_50_50_right_start);
-
-            // 30-70
-            $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left");
-            $_30_70_left_end = $this->getEnd($fileString, $_30_70_left_start);
-
-            $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right");
-            $_30_70_right_end = $this->getEnd($fileString, $_30_70_right_start);
-
-            // 70-30
-            $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left");
-            $_70_30_left_end = $this->getEnd($fileString, $_70_30_left_start);
-
-            $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right");
-            $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
-
-            // construct the output string (there is probably a better way to do this if there's a method to specify substr between 2 ints)
-            $editedFileString = substr($fileString, 0, $_1ColumnStart) . $map['1spaltig_normal'] . substr($fileString, $_1ColumnEnd);
-            $editedFileString = substr($editedFileString, 0, $_50_50_left_start) . $map['2Spalten-50-50_main_links'] . substr($fileString, $_50_50_left_end);
-            $editedFileString = substr($editedFileString, 0, $_50_50_right_start) . $map['2Spalten-50-50_main_rechts'] . substr($fileString, $_50_50_right_end);
-            $editedFileString = substr($editedFileString, 0, $_30_70_left_start) . $map['2Spalten-30-70_main_links'] . substr($fileString, $_30_70_left_end);
-            $editedFileString = substr($editedFileString, 0, $_30_70_right_start) . $map['2Spalten-30-70_main_rechts'] . substr($fileString, $_30_70_right_end);
-            $editedFileString = substr($editedFileString, 0, $_70_30_left_start) . $map['2Spalten-70-30_main_links'] . substr($fileString, $_70_30_left_end);
-            $editedFileString = substr($editedFileString, 0, $_70_30_right_start) . $map['2Spalten-70-30_main_rechts'] . substr($fileString, $_70_30_right_end);
-
-            // write file to fileadmin
-            file_put_contents($path . "_normal.css", $editedFileString);
-        }else{
-
-            // -----------
-            // All elements are edited the same way
-            // 1. get content from fileadmin template
-            // 2. search where the background color starts & ends
-            // 3. edit file in fileadmin with the new colorcode
-            // backend layout colors are treated as a collective to get better I/O performance
-            // -----------
-            // header
-            $fileString = file_get_contents($path . "header.css");
-
-
-            $start = strpos($fileString, "body");
-            $fontSelector = strpos($fileString, "font-family:", $start);
-            $fontStart = strpos($fileString, " ", $fontSelector)+1;
-            $fontEnd = strpos($fileString, ";", $fontStart);
-
-
-            $editedFileString = substr($fileString, 0, $fontStart) . $font . substr($fileString, $fontEnd);
-
-
-
-
-            $hp1_colorStart = $this->getStart($editedFileString, "div.site-header-hp1");
-            $hp1_colorEnd = $this->getEnd($editedFileString, $hp1_colorStart);
-
-            $editedFileString = substr($editedFileString, 0, $hp1_colorStart) . $map['header_homepage1'] . substr($editedFileString, $hp1_colorEnd);
-
-            $hp2_colorStart = $this->getStart($editedFileString, "div.site-header-hp2");
-            $hp2_colorEnd = $this->getEnd($editedFileString, $hp2_colorStart);
-
-            $editedFileString = substr($editedFileString, 0, $hp2_colorStart) . $map['header_homepage2'] . substr($editedFileString, $hp2_colorEnd);
-
-
-            $colorStart = $this->getStart($editedFileString, "div.site-header");
-            $colorEnd = $this->getEnd($editedFileString, $colorStart);
-
-            $editedFileString = substr($editedFileString, 0, $colorStart) . $map['header_homepage2'] . substr($editedFileString, $colorEnd);
-            file_put_contents($path . "header.css", $editedFileString);
-
-
-            // footer
-            $fileString = file_get_contents($path . "footer.css");
-            $hp1_colorStart = $this->getStart($fileString, "div.site-footer-hp1");
-            $hp1_colorEnd = $this->getEnd($fileString, $hp1_colorStart);
-
-            $editedFileString = substr($fileString, 0, $hp1_colorStart) . $map['footer_homepage1'] . substr($fileString, $hp1_colorEnd);
-
-
-            $hp2_colorStart = $this->getStart($editedFileString, "div.site-footer-hp2");
-            $hp2_colorEnd = $this->getEnd($editedFileString, $hp2_colorStart);
-
-            $editedFileString = substr($editedFileString, 0, $hp2_colorStart) . $map['footer_homepage2'] . substr($editedFileString, $hp2_colorEnd);
-
-
-            $colorStart = $this->getStart($editedFileString, "div.site-footer");
-            $colorEnd = $this->getEnd($editedFileString, $colorStart);
-
-            $editedFileString = substr($fileString, 0, $colorStart) . $map['footer_homepage2'] . substr($editedFileString, $colorEnd);
-            file_put_contents($path . "footer.css", $editedFileString);
-
-
-            // HP1 Main Content
-            $fileString = file_get_contents($path . "homepage1.css");
-            $colorTopStart = $this->getStart($fileString, "div .hp1_oben");
-            $colorTopEnd = $this->getEnd($fileString, $colorTopStart);
-
-            $colorLeftStart = $this->getStart($fileString, "div .hp1_unten_links");
-            $colorLeftEnd = $this->getEnd($fileString, $colorLeftStart);
-
-            $colorRightStart = $this->getStart($fileString, "div .hp1_unten_rechts");
-            $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
-
-            $editedFileString = substr($fileString, 0, $colorTopStart) . $map['homepage1_homepage1_main1'] . substr($fileString, $colorTopEnd);
-            $editedFileString = substr($editedFileString, 0, $colorLeftStart) . $map['homepage1_homepage1_main2'] . substr($fileString, $colorLeftEnd);
-            $editedFileString = substr($editedFileString, 0, $colorRightStart) . $map['homepage1_homepage1_main3'] . substr($fileString, $colorRightEnd);
-            file_put_contents($path . "homepage1.css", $editedFileString);
-
-
-            // HP2 Main Content
-            $fileString = file_get_contents($path . "homepage2.css");
-            $colorLeftStart = $this->getStart($fileString, "div .hp2_links");
-            $colorLeftEnd = $this->getEnd($fileString, $colorLeftStart);
-
-            $colorRightStart = $this->getStart($fileString, "div .hp2_rechts");
-            $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
-
-            $editedFileString = substr($fileString, 0, $colorLeftStart) . $map['homepage2_homepage2_main1'] . substr($fileString, $colorLeftEnd);
-            $editedFileString= substr($editedFileString, 0, $colorRightStart) . $map['homepage2_homepage2_main2'] . substr($fileString, $colorRightEnd);
-            file_put_contents($path . "homepage2.css", $editedFileString);
-
-
-            // ----- backend layout -----
-            // get file content
-            $fileString = file_get_contents($path . "normal.css");
-
-            // 1 column
-            $_1ColumnStart = $this->getStart($fileString, ".einspaltig_content");
-            $_1ColumnEnd = $this->getEnd($fileString, $_1ColumnStart);
-
-            // 50-50
-            $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left");
-            $_50_50_left_end = $this->getEnd($fileString, $_50_50_left_start);
-
-            $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right");
-            $_50_50_right_end = $this->getEnd($fileString, $_50_50_right_start);
-
-            // 30-70
-            $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left");
-            $_30_70_left_end = $this->getEnd($fileString, $_30_70_left_start);
-
-            $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right");
-            $_30_70_right_end = $this->getEnd($fileString, $_30_70_right_start);
-
-            // 70-30
-            $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left");
-            $_70_30_left_end = $this->getEnd($fileString, $_70_30_left_start);
-
-            $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right");
-            $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
-
-            // construct the output string (there is probably a better way to do this if there's a method to specify substr between 2 ints)
-            $editedFileString = substr($fileString, 0, $_1ColumnStart) . $map['1spaltig_normal'] . substr($fileString, $_1ColumnEnd);
-            $editedFileString = substr($editedFileString, 0, $_50_50_left_start) . $map['2Spalten-50-50_main_links'] . substr($fileString, $_50_50_left_end);
-            $editedFileString = substr($editedFileString, 0, $_50_50_right_start) . $map['2Spalten-50-50_main_rechts'] . substr($fileString, $_50_50_right_end);
-            $editedFileString = substr($editedFileString, 0, $_30_70_left_start) . $map['2Spalten-30-70_main_links'] . substr($fileString, $_30_70_left_end);
-            $editedFileString = substr($editedFileString, 0, $_30_70_right_start) . $map['2Spalten-30-70_main_rechts'] . substr($fileString, $_30_70_right_end);
-            $editedFileString = substr($editedFileString, 0, $_70_30_left_start) . $map['2Spalten-70-30_main_links'] . substr($fileString, $_70_30_left_end);
-            $editedFileString = substr($editedFileString, 0, $_70_30_right_start) . $map['2Spalten-70-30_main_rechts'] . substr($fileString, $_70_30_right_end);
-
-            // write file to fileadmin
-            file_put_contents($path . "normal.css", $editedFileString);
+            $path = dirname(__DIR__, 3) . "/typo3_template_baukasten/Resources/Public/Css/";    // TODO include HP1/2
         }
 
+        // -----------
+        // All elements are edited the same way
+        // 1. get content from current template (either typo3_template_baukasten default or fileadmin template)
+        // 2. search where the selectors starts & ends
+        // 3. write the variable change into the string
+        // 4. output file
+        // changes are grouped by file for better I/O performance
+        // -----------
+        // header
+        $fileString = file_get_contents($path . "header.css");
+
+        // font
+        $start = strpos($fileString, "body");
+        $fontSelector = strpos($fileString, "font-family:", $start);
+        $fontStart = strpos($fileString, " ", $fontSelector)+1;
+        $fontEnd = strpos($fileString, ";", $fontStart);
+        $editedHeaderFileString = substr($fileString, 0, $fontStart) . $font . substr($fileString, $fontEnd);
+
+        // header background color
+        $hp1_colorStart = $this->getStart($editedHeaderFileString, "div.site-header-hp1");
+        $hp1_colorEnd = $this->getEnd($editedHeaderFileString, $hp1_colorStart);
+        $editedHeaderFileString = substr($editedHeaderFileString, 0, $hp1_colorStart) . $map['header_homepage1'] . substr($editedHeaderFileString, $hp1_colorEnd);
+
+        $hp2_colorStart = $this->getStart($editedHeaderFileString, "div.site-header-hp2");
+        $hp2_colorEnd = $this->getEnd($editedHeaderFileString, $hp2_colorStart);
+        $editedHeaderFileString = substr($editedHeaderFileString, 0, $hp2_colorStart) . $map['header_homepage2'] . substr($editedHeaderFileString, $hp2_colorEnd);
+
+        $colorStart = $this->getStart($editedHeaderFileString, "div.site-header");
+        $colorEnd = $this->getEnd($editedHeaderFileString, $colorStart);
+        $editedHeaderFileString = substr($editedHeaderFileString, 0, $colorStart) . $map['header_homepage2'] . substr($editedHeaderFileString, $colorEnd);
+
+
+
+        // footer
+        $fileString = file_get_contents($path . "footer.css");
+        // background color
+        $hp1_colorStart = $this->getStart($fileString, "div.site-footer-hp1");
+        $hp1_colorEnd = $this->getEnd($fileString, $hp1_colorStart);
+        $editedFooterFileString = substr($fileString, 0, $hp1_colorStart) . $map['footer_homepage1'] . substr($fileString, $hp1_colorEnd);
+
+        $hp2_colorStart = $this->getStart($editedFooterFileString, "div.site-footer-hp2");
+        $hp2_colorEnd = $this->getEnd($editedFooterFileString, $hp2_colorStart);
+        $editedFooterFileString = substr($editedFooterFileString, 0, $hp2_colorStart) . $map['footer_homepage2'] . substr($editedFooterFileString, $hp2_colorEnd);
+
+        $colorStart = $this->getStart($editedFooterFileString, "div.site-footer");
+        $colorEnd = $this->getEnd($editedFooterFileString, $colorStart);
+        $editedFooterFileString = substr($fileString, 0, $colorStart) . $map['footer_homepage2'] . substr($editedFooterFileString, $colorEnd);
+
+
+
+        // HP1 Main Content
+        $fileString = file_get_contents($path . "homepage1.css");
+        // background color
+        $colorTopStart = $this->getStart($fileString, "div .hp1_oben");
+        $colorTopEnd = $this->getEnd($fileString, $colorTopStart);
+
+        $colorLeftStart = $this->getStart($fileString, "div .hp1_unten_links");
+        $colorLeftEnd = $this->getEnd($fileString, $colorLeftStart);
+
+        $colorRightStart = $this->getStart($fileString, "div .hp1_unten_rechts");
+        $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
+
+        $editedHP1FileString = substr($fileString, 0, $colorTopStart) . $map['homepage1_homepage1_main1'] . substr($fileString, $colorTopEnd);
+        $editedHP1FileString = substr($editedHP1FileString, 0, $colorLeftStart) . $map['homepage1_homepage1_main2'] . substr($fileString, $colorLeftEnd);
+        $editedHP1FileString = substr($editedHP1FileString, 0, $colorRightStart) . $map['homepage1_homepage1_main3'] . substr($fileString, $colorRightEnd);
+
+
+
+        // HP2 Main Content
+        $fileString = file_get_contents($path . "homepage2.css");
+        // background color
+        $colorLeftStart = $this->getStart($fileString, "div .hp2_links");
+        $colorLeftEnd = $this->getEnd($fileString, $colorLeftStart);
+
+//        $fileString = file_get_contents($path . "homepage2.css");
+        $colorRightStart = $this->getStart($fileString, "div .hp2_rechts");
+        $colorRightEnd = $this->getEnd($fileString, $colorRightStart);
+
+        $editedHP2FileString = substr($fileString, 0, $colorLeftStart) . $map['homepage2_homepage2_main1'] . substr($fileString, $colorLeftEnd);
+        $editedHP2FileString= substr($editedHP2FileString, 0, $colorRightStart) . $map['homepage2_homepage2_main2'] . substr($fileString, $colorRightEnd);
+
+
+
+        // ----- backend layout -----
+        $fileString = file_get_contents($path . "normal.css");
+        // background color
+        // 1 column
+        $_1ColumnStart = $this->getStart($fileString, ".einspaltig_content");
+        $_1ColumnEnd = $this->getEnd($fileString, $_1ColumnStart);
+
+        // 50-50
+        $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left");
+        $_50_50_left_end = $this->getEnd($fileString, $_50_50_left_start);
+
+        $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right");
+        $_50_50_right_end = $this->getEnd($fileString, $_50_50_right_start);
+
+        // 30-70
+        $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left");
+        $_30_70_left_end = $this->getEnd($fileString, $_30_70_left_start);
+
+        $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right");
+        $_30_70_right_end = $this->getEnd($fileString, $_30_70_right_start);
+
+        // 70-30
+        $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left");
+        $_70_30_left_end = $this->getEnd($fileString, $_70_30_left_start);
+
+        $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right");
+        $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
+
+        // construct the output string (there is probably a better way to do this if there's a method to specify substr between 2 ints)
+        $editedNormalFileString = substr($fileString, 0, $_1ColumnStart) . $map['1spaltig_normal'] . substr($fileString, $_1ColumnEnd);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_50_50_left_start) . $map['2Spalten-50-50_main_links'] . substr($fileString, $_50_50_left_end);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_50_50_right_start) . $map['2Spalten-50-50_main_rechts'] . substr($fileString, $_50_50_right_end);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_30_70_left_start) . $map['2Spalten-30-70_main_links'] . substr($fileString, $_30_70_left_end);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_30_70_right_start) . $map['2Spalten-30-70_main_rechts'] . substr($fileString, $_30_70_right_end);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_70_30_left_start) . $map['2Spalten-70-30_main_links'] . substr($fileString, $_70_30_left_end);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_70_30_right_start) . $map['2Spalten-70-30_main_rechts'] . substr($fileString, $_70_30_right_end);
+
+
+
+        // write all the files to fileadmin
+        if ($loadDefault){
+            //change path to fileadmin path for saving if the default had to be loaded
+            $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID . "_";     // TODO include HP1/2
+        }
+
+        file_put_contents($path . "header.css", $editedHeaderFileString);
+        file_put_contents($path . "footer.css", $editedFooterFileString);
+        file_put_contents($path . "homepage1.css", $editedHP1FileString);
+        file_put_contents($path . "homepage2.css", $editedHP2FileString);
+        file_put_contents($path . "normal.css", $editedNormalFileString);
 
         $data = ['result' => 'Doing Ajax Stuff'];
         return $this->jsonResponse(json_encode($data));

@@ -25,11 +25,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-changed logo">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-Added JS &amp; html for text size &amp; alignment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +123,7 @@
       <workItem from="1679405881397" duration="5092000" />
       <workItem from="1680173042470" duration="3011000" />
       <workItem from="1680269833743" duration="1253000" />
-      <workItem from="1680515064169" duration="2512000" />
+      <workItem from="1680515064169" duration="4841000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented Layout">
       <created>1673629991202</created>
@@ -225,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679427216665</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="-Added JS &amp; html for text size &amp; alignment">
+      <created>1680525260369</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1680525260369</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,7 +278,8 @@
     <MESSAGE value="-deleted unused functions and code" />
     <MESSAGE value="-added logo" />
     <MESSAGE value="-changed logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="-changed logo" />
+    <MESSAGE value="-Added JS &amp; html for text size &amp; alignment" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added JS &amp; html for text size &amp; alignment" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
