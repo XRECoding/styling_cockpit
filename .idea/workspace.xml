@@ -25,7 +25,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-added logo" />
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-changed logo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Private/Backend/Templates/Ajax/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +66,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../FlexiTeamInterface" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -117,7 +122,10 @@
       <workItem from="1678530610308" duration="665000" />
       <workItem from="1678599283950" duration="12356000" />
       <workItem from="1678780827449" duration="6360000" />
-      <workItem from="1679405881397" duration="4414000" />
+      <workItem from="1679405881397" duration="5092000" />
+      <workItem from="1680173042470" duration="3011000" />
+      <workItem from="1680269833743" duration="1253000" />
+      <workItem from="1680515064169" duration="2512000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented Layout">
       <created>1673629991202</created>
@@ -210,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679425728923</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="-changed logo">
+      <created>1679427216665</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1679427216665</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +272,8 @@
     <MESSAGE value="-deleted header.css and footer.css since they are no longer needed" />
     <MESSAGE value="-deleted unused functions and code" />
     <MESSAGE value="-added logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="-added logo" />
+    <MESSAGE value="-changed logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="-changed logo" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
@@ -268,10 +284,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1675063530354" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1679405919591">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1680273256799">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1679405919591" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1680273256799" />
     <state x="1146" y="598" key="Github.ShareDialog" timestamp="1673620331426">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -292,10 +308,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1674220510734" />
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1679425806354">
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1679427225359">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1679425806354" />
+    <state x="872" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1679427225359" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1673628204397">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -2,11 +2,16 @@ var colorPickerValue =  document.getElementById("color-picker").getAttribute('va
 let firstHomepageChild = document.getElementById("homepage").firstElementChild;
 let firstGridChild = document.getElementById("grid").firstElementChild;
 const coloreMap = new Map();
+
+// save the current selected font
 var selectedFont = document.getElementById("fontOption").options[document.getElementById("fontOption").selectedIndex].text;
 
+// save the current text size
+var selectedTextSize = document.getElementById("textSizeOption").options[document.getElementById("textSizeOption").selectedIndex].text;
 
+// save current text alignment
+var selectedtextAlignment = document.getElementById("textAlignmentOption").options[document.getElementById("textAlignmentOption").selectedIndex].text;
 
-// save the current element color in the map
 // credit for the hex conversion: http://wowmotty.blogspot.com/2009/06/convert-jquery-rgb-output-to-hex-color.html
 var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
 
@@ -20,6 +25,7 @@ function hex(x) {
     return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
 }
 
+// save the current element color in the map
 // header
 coloreMap.set("header_homepage1", rgb2hex(document.getElementById("homepage1_header").style.backgroundColor));
 coloreMap.set("header_homepage2", rgb2hex(document.getElementById("homepage2_header").style.backgroundColor));
@@ -159,12 +165,24 @@ function getCurrentHomepage() {
 
 /**
  * {@changeFont}
- * Gets triggert if new font in frontend is selected.
- * Sets the font globaly to the new font 
+ * Gets triggered if new font in frontend is selected.
+ * Sets the font globally to the new font
  */
 function changeFont() {
     var e = document.getElementById("fontOption");
     selectedFont = e.options[e.selectedIndex].text;
     //console.log(selectedFont);
+}
+
+function changeTextSize() {
+    var e = document.getElementById("textSizeOption");
+    selectedTextSize = e.options[e.selectedIndex].text;
+    // console.log(selectedTextSize);
+}
+
+function changeTextAlignment() {
+    var e = document.getElementById("textAlignmentOption");
+    selectedtextAlignment = e.options[e.selectedIndex].text;
+    // console.log(selectedtextAlignment);
 }
 
