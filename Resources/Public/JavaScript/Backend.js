@@ -40,16 +40,23 @@ coloreMap.set("homepage1_homepage1_main3", rgb2hex(document.getElementById("home
 coloreMap.set("homepage2_homepage2_main1", rgb2hex(document.getElementById("homepage2_homepage2_main1").style.backgroundColor));
 coloreMap.set("homepage2_homepage2_main2", rgb2hex(document.getElementById("homepage2_homepage2_main2").style.backgroundColor));
 // 1 spaltig
-coloreMap.set("1spaltig_normal", rgb2hex(document.getElementById("1spaltig_normal").style.backgroundColor));
+coloreMap.set("1spaltig_normal_homepage1", rgb2hex(document.getElementById("1spaltig_normal_homepage1").style.backgroundColor));
+coloreMap.set("1spaltig_normal_homepage2", rgb2hex(document.getElementById("1spaltig_normal_homepage2").style.backgroundColor));
 // 2 spalten 30/70
-coloreMap.set("2Spalten-30-70_main_links", rgb2hex(document.getElementById("2Spalten-30-70_main_links").style.backgroundColor));
-coloreMap.set("2Spalten-30-70_main_rechts", rgb2hex(document.getElementById("2Spalten-30-70_main_rechts").style.backgroundColor));
+coloreMap.set("2Spalten-30-70_main_links_homepage1", rgb2hex(document.getElementById("2Spalten-30-70_main_links_homepage1").style.backgroundColor));
+coloreMap.set("2Spalten-30-70_main_links_homepage2", rgb2hex(document.getElementById("2Spalten-30-70_main_links_homepage2").style.backgroundColor));
+coloreMap.set("2Spalten-30-70_main_rechts_homepage1", rgb2hex(document.getElementById("2Spalten-30-70_main_rechts_homepage1").style.backgroundColor));
+coloreMap.set("2Spalten-30-70_main_rechts_homepage2", rgb2hex(document.getElementById("2Spalten-30-70_main_rechts_homepage2").style.backgroundColor));
 // 2 spalten 50/50
-coloreMap.set("2Spalten-50-50_main_links", rgb2hex(document.getElementById("2Spalten-50-50_main_links").style.backgroundColor));
-coloreMap.set("2Spalten-50-50_main_rechts", rgb2hex(document.getElementById("2Spalten-50-50_main_rechts").style.backgroundColor));
+coloreMap.set("2Spalten-50-50_main_links_homepage1", rgb2hex(document.getElementById("2Spalten-50-50_main_links_homepage1").style.backgroundColor));
+coloreMap.set("2Spalten-50-50_main_links_homepage2", rgb2hex(document.getElementById("2Spalten-50-50_main_links_homepage2").style.backgroundColor));
+coloreMap.set("2Spalten-50-50_main_rechts_homepage1", rgb2hex(document.getElementById("2Spalten-50-50_main_rechts_homepage1").style.backgroundColor));
+coloreMap.set("2Spalten-50-50_main_rechts_homepage2", rgb2hex(document.getElementById("2Spalten-50-50_main_rechts_homepage2").style.backgroundColor));
 // 2 spalten 70/30
-coloreMap.set("2Spalten-70-30_main_links", rgb2hex(document.getElementById("2Spalten-70-30_main_links").style.backgroundColor));
-coloreMap.set("2Spalten-70-30_main_rechts", rgb2hex(document.getElementById("2Spalten-70-30_main_rechts").style.backgroundColor));
+coloreMap.set("2Spalten-70-30_main_links_homepage1", rgb2hex(document.getElementById("2Spalten-70-30_main_links_homepage1").style.backgroundColor));
+coloreMap.set("2Spalten-70-30_main_links_homepage2", rgb2hex(document.getElementById("2Spalten-70-30_main_links_homepage2").style.backgroundColor));
+coloreMap.set("2Spalten-70-30_main_rechts_homepage1", rgb2hex(document.getElementById("2Spalten-70-30_main_rechts_homepage1").style.backgroundColor));
+coloreMap.set("2Spalten-70-30_main_rechts_homepage2", rgb2hex(document.getElementById("2Spalten-70-30_main_rechts_homepage2").style.backgroundColor));
 
 
 firstHomepageChild.style.visibility = "visible";
@@ -68,26 +75,32 @@ function onClick(div) {
 
     if (div.getAttribute("name") == "header_" + currentHomepage) {
         var elms = document.querySelectorAll("[name='header_"+currentHomepage+"']");
-        for (var i = 0; i < elms.length; i++) 
+        for (var i = 0; i < elms.length; i++)
             elms[i].style.backgroundColor = colorPickerValue;
 
     } else if (div.getAttribute("name") == "footer_" + currentHomepage) {
         var elms = document.querySelectorAll("[name='footer_"+currentHomepage+"']");
-        for (var i = 0; i < elms.length; i++) 
+        for (var i = 0; i < elms.length; i++)
             elms[i].style.backgroundColor = colorPickerValue;
 
     } else {
         div.style.backgroundColor = colorPickerValue;
     }
 
-    coloreMap.set(div.getAttribute("name"), colorPickerValue);
+    if (div.getAttribute("name").includes("header") || div.getAttribute("name").includes("footer") ||
+        div.getAttribute("name").includes("homepage1_main") || div.getAttribute("name").includes("homepage2_main")){
+        coloreMap.set(div.getAttribute("name"), colorPickerValue);
+    } else {
+        coloreMap.set(div.getAttribute("name").concat("_").concat(currentHomepage), colorPickerValue);
+    }
+
 }
 
 
 /**
  * {@changeHomepage}
  * Gets triggert if new homepage in frontend is selected.
- * Sets the olf homepage to collapse and the new one 
+ * Sets the olf homepage to collapse and the new one
  * to visible so that the selected homepage is shown in
  * the frontend
  */
@@ -109,7 +122,7 @@ function changeHomepage() {
 /**
  * {@changeGrid}
  * Gets triggert if new grid in frontend is selected.
- * Sets the olf grid to collapse and the new one 
+ * Sets the olf grid to collapse and the new one
  * to visible so that the selected grid is shown in
  * the frontend
  */
@@ -119,6 +132,7 @@ function changeGrid() {
 
     if (lastGrid != "") {
         let a = document.getElementById(lastGrid);
+        console.log(lastGrid);
         a.style.visibility = "collapse";
     }
 
@@ -156,7 +170,7 @@ require(['TYPO3/CMS/Core/Ajax/AjaxRequest'], function (AjaxRequest) {
 
 /**
  * {@getCurrentHomepage}
- * Fetches the text of the currently selected homepage 
+ * Fetches the text of the currently selected homepage
  */
 function getCurrentHomepage() {
     var a = document.getElementById("homepageOption");

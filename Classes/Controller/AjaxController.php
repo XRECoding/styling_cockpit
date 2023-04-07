@@ -166,36 +166,57 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // backend layouts
         $fileString = file_get_contents($path . "normal.css");
         // 1 column
-        $color_1Column_Start = $this->getStart($fileString, ".einspaltig_content");
+        $color_1Column_Start = $this->getStart($fileString, ".einspaltig_content_HP1");
         $color_1Column_End = $this->getEnd($fileString, $color_1Column_Start);
-        $map["1spaltig_normal"] = substr($fileString, $color_1Column_Start, $color_1Column_End - $color_1Column_Start);
+        $map["1spaltig_normal_homepage1"] = substr($fileString, $color_1Column_Start, $color_1Column_End - $color_1Column_Start);
+        $color_1Column_Start = $this->getStart($fileString, ".einspaltig_content_HP2");
+        $color_1Column_End = $this->getEnd($fileString, $color_1Column_Start);
+        $map["1spaltig_normal_homepage2"] = substr($fileString, $color_1Column_Start, $color_1Column_End - $color_1Column_Start);
 
         // 50-50
-        $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left");
+        $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left_HP1");
         $_50_50_left_end = $this->getEnd($fileString, $_50_50_left_start);
-        $map["2Spalten-50-50_main_links"] = substr($fileString, $_50_50_left_start, $_50_50_left_end - $_50_50_left_start);
+        $map["2Spalten-50-50_main_links_homepage1"] = substr($fileString, $_50_50_left_start, $_50_50_left_end - $_50_50_left_start);
+        $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left_HP2");
+        $_50_50_left_end = $this->getEnd($fileString, $_50_50_left_start);
+        $map["2Spalten-50-50_main_links_homepage2"] = substr($fileString, $_50_50_left_start, $_50_50_left_end - $_50_50_left_start);
 
-        $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right");
+        $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right_HP1");
         $_50_50_right_end = $this->getEnd($fileString, $_50_50_right_start);
-        $map["2Spalten-50-50_main_rechts"] = substr($fileString, $_50_50_right_start, $_50_50_right_end - $_50_50_right_start);
+        $map["2Spalten-50-50_main_rechts_homepage1"] = substr($fileString, $_50_50_right_start, $_50_50_right_end - $_50_50_right_start);
+        $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right_HP2");
+        $_50_50_right_end = $this->getEnd($fileString, $_50_50_right_start);
+        $map["2Spalten-50-50_main_rechts_homepage2"] = substr($fileString, $_50_50_right_start, $_50_50_right_end - $_50_50_right_start);
 
         // 30-70
-        $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left");
+        $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left_HP1");
         $_30_70_left_end = $this->getEnd($fileString, $_30_70_left_start);
-        $map["2Spalten-30-70_main_links"] = substr($fileString, $_30_70_left_start, $_30_70_left_end - $_30_70_left_start);
+        $map["2Spalten-30-70_main_links_homepage1"] = substr($fileString, $_30_70_left_start, $_30_70_left_end - $_30_70_left_start);
+        $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left_HP2");
+        $_30_70_left_end = $this->getEnd($fileString, $_30_70_left_start);
+        $map["2Spalten-30-70_main_links_homepage2"] = substr($fileString, $_30_70_left_start, $_30_70_left_end - $_30_70_left_start);
 
-        $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right");
+        $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right_HP1");
         $_30_70_right_end = $this->getEnd($fileString, $_30_70_right_start);
-        $map["2Spalten-30-70_main_rechts"] = substr($fileString, $_30_70_right_start, $_30_70_right_end - $_30_70_right_start);
+        $map["2Spalten-30-70_main_rechts_homepage1"] = substr($fileString, $_30_70_right_start, $_30_70_right_end - $_30_70_right_start);
+        $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right_HP2");
+        $_30_70_right_end = $this->getEnd($fileString, $_30_70_right_start);
+        $map["2Spalten-30-70_main_rechts_homepage2"] = substr($fileString, $_30_70_right_start, $_30_70_right_end - $_30_70_right_start);
 
         // 70-30
-        $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left");
+        $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left_HP1");
         $_70_30_left_end = $this->getEnd($fileString, $_70_30_left_start);
-        $map["2Spalten-70-30_main_links"] = substr($fileString, $_70_30_left_start, $_70_30_left_end - $_70_30_left_start);
+        $map["2Spalten-70-30_main_links_homepage1"] = substr($fileString, $_70_30_left_start, $_70_30_left_end - $_70_30_left_start);
+        $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left_HP2");
+        $_70_30_left_end = $this->getEnd($fileString, $_70_30_left_start);
+        $map["2Spalten-70-30_main_links_homepage2"] = substr($fileString, $_70_30_left_start, $_70_30_left_end - $_70_30_left_start);
 
-        $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right");
+        $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right_HP1");
         $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
-        $map["2Spalten-70-30_main_rechts"] = substr($fileString, $_70_30_right_start, $_70_30_right_end - $_70_30_right_start);
+        $map["2Spalten-70-30_main_rechts_homepage1"] = substr($fileString, $_70_30_right_start, $_70_30_right_end - $_70_30_right_start);
+        $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right_HP2");
+        $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
+        $map["2Spalten-70-30_main_rechts_homepage2"] = substr($fileString, $_70_30_right_start, $_70_30_right_end - $_70_30_right_start);
 
         // -----------------------------------------
 
@@ -205,9 +226,21 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         $layouts = BackendUtility::getPagesTSconfig(1)["mod."]["web_layout."]["BackendLayouts."];
 
+
+        // removing layouts not supported by typo3_template_baukasten
+        array_splice($layouts, 14);
+        array_splice($layouts, 0, 2);
+        array_splice($layouts, 1, 2);
+        array_splice($layouts, 2, 2);
+        array_splice($layouts, 3, 2);
+
+//        foreach ($layouts as $key => $value){
+//            echo $key;
+//            echo "<br>";
+//        }
+
         $homepageOptions = [];
         $gridOptionsUncut = [];
-        $gridOptions = [];
 
         foreach($layouts as $key => $value) {
             if (str_contains($key, "homepage")) {
@@ -271,8 +304,14 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             }
 
                         } else {
-                            $layoutContainer .= "<div id='".$layoutName."_".$gridName."' name=".$layoutName."_".$gridName." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a." background-color: " . $map[$layoutName."_".$gridName] ."'>".$gridName."</div>";
-
+//                            $layoutContainer .= "<div id='".$layoutName."_".$gridName."' name=".$layoutName."_".$gridName." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a." background-color: " . $map[$layoutName."_".$gridName] ."'>".$gridName."</div>";
+                            if (str_contains($layoutName, "homepage")){
+//                                echo $layoutName."_".$gridName; echo "<br>";
+                                $layoutContainer .= "<div id='".$layoutName."_".$gridName."' name=".$layoutName."_".$gridName." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a." background-color: " . $map[$layoutName."_".$gridName] ."'>".$gridName."</div>";
+                            } else {
+//                                echo $layoutName."_".$gridName."_".$homepage; echo "<br>";
+                                $layoutContainer .= "<div id='".$layoutName."_".$gridName. "_" . $homepage . "' name=".$layoutName."_".$gridName." onclick='onClick(this);' style='height:". 60 / $heightCounter."%;width:". 100 * $c ."%; border: 1px solid black;".$a." background-color: " . $map[$layoutName."_".$gridName."_".$homepage] ."'>".$gridName."</div>";
+                            }
                         }
 
                     }
@@ -372,10 +411,6 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $hp2_colorEnd = $this->getEnd($editedHeaderFileString, $hp2_colorStart);
         $editedHeaderFileString = substr($editedHeaderFileString, 0, $hp2_colorStart) . $map['header_homepage2'] . substr($editedHeaderFileString, $hp2_colorEnd);
 
-        $colorStart = $this->getStart($editedHeaderFileString, "div.site-header");
-        $colorEnd = $this->getEnd($editedHeaderFileString, $colorStart);
-        $editedHeaderFileString = substr($editedHeaderFileString, 0, $colorStart) . $map['header_homepage2'] . substr($editedHeaderFileString, $colorEnd);
-
         // size
         $sizeSelector = strpos($editedHeaderFileString, "font-size:", $start);
         $sizeStart = strpos($editedHeaderFileString, " ", $sizeSelector)+1;
@@ -400,10 +435,6 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $hp2_colorStart = $this->getStart($editedFooterFileString, "div.site-footer-hp2");
         $hp2_colorEnd = $this->getEnd($editedFooterFileString, $hp2_colorStart);
         $editedFooterFileString = substr($editedFooterFileString, 0, $hp2_colorStart) . $map['footer_homepage2'] . substr($editedFooterFileString, $hp2_colorEnd);
-
-        $colorStart = $this->getStart($editedFooterFileString, "div.site-footer");
-        $colorEnd = $this->getEnd($editedFooterFileString, $colorStart);
-        $editedFooterFileString = substr($fileString, 0, $colorStart) . $map['footer_homepage2'] . substr($editedFooterFileString, $colorEnd);
 
 
 
@@ -444,38 +475,59 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $fileString = file_get_contents($path . "normal.css");
         // background color
         // 1 column
-        $_1ColumnStart = $this->getStart($fileString, ".einspaltig_content");
-        $_1ColumnEnd = $this->getEnd($fileString, $_1ColumnStart);
+        $_1ColumnStart_HP1 = $this->getStart($fileString, ".einspaltig_content_HP1");
+        $_1ColumnEnd_HP1 = $this->getEnd($fileString, $_1ColumnStart_HP1);
+        $_1ColumnStart_HP2 = $this->getStart($fileString, ".einspaltig_content_HP2");
+        $_1ColumnEnd_HP2 = $this->getEnd($fileString, $_1ColumnStart_HP2);
 
         // 50-50
-        $_50_50_left_start = $this->getStart($fileString, ".main_50-50_left");
-        $_50_50_left_end = $this->getEnd($fileString, $_50_50_left_start);
+        $_50_50_left_start_HP1 = $this->getStart($fileString, ".main_50-50_left_HP1");
+        $_50_50_left_end_HP1 = $this->getEnd($fileString, $_50_50_left_start_HP1);
+        $_50_50_left_start_HP2 = $this->getStart($fileString, ".main_50-50_left_HP2");
+        $_50_50_left_end_HP2 = $this->getEnd($fileString, $_50_50_left_start_HP2);
 
-        $_50_50_right_start = $this->getStart($fileString, ".main_50-50_right");
-        $_50_50_right_end = $this->getEnd($fileString, $_50_50_right_start);
+        $_50_50_right_start_HP1 = $this->getStart($fileString, ".main_50-50_right_HP1");
+        $_50_50_right_end_HP1 = $this->getEnd($fileString, $_50_50_right_start_HP1);
+        $_50_50_right_start_HP2 = $this->getStart($fileString, ".main_50-50_right_HP2");
+        $_50_50_right_end_HP2 = $this->getEnd($fileString, $_50_50_right_start_HP2);
 
         // 30-70
-        $_30_70_left_start = $this->getStart($fileString, ".main_30-70_left");
-        $_30_70_left_end = $this->getEnd($fileString, $_30_70_left_start);
+        $_30_70_left_start_HP1 = $this->getStart($fileString, ".main_30-70_left_HP1");
+        $_30_70_left_end_HP1 = $this->getEnd($fileString, $_30_70_left_start_HP1);
+        $_30_70_left_start_HP2 = $this->getStart($fileString, ".main_30-70_left_HP2");
+        $_30_70_left_end_HP2 = $this->getEnd($fileString, $_30_70_left_start_HP2);
 
-        $_30_70_right_start = $this->getStart($fileString, ".main_30-70_right");
-        $_30_70_right_end = $this->getEnd($fileString, $_30_70_right_start);
+        $_30_70_right_start_HP1 = $this->getStart($fileString, ".main_30-70_right_HP1");
+        $_30_70_right_end_HP1 = $this->getEnd($fileString, $_30_70_right_start_HP1);
+        $_30_70_right_start_HP2 = $this->getStart($fileString, ".main_30-70_right_HP2");
+        $_30_70_right_end_HP2 = $this->getEnd($fileString, $_30_70_right_start_HP2);
 
         // 70-30
-        $_70_30_left_start = $this->getStart($fileString, ".main_70-30_left");
-        $_70_30_left_end = $this->getEnd($fileString, $_70_30_left_start);
+        $_70_30_left_start_HP1 = $this->getStart($fileString, ".main_70-30_left_HP1");
+        $_70_30_left_end_HP1 = $this->getEnd($fileString, $_70_30_left_start_HP1);
+        $_70_30_left_start_HP2 = $this->getStart($fileString, ".main_70-30_left_HP2");
+        $_70_30_left_end_HP2 = $this->getEnd($fileString, $_70_30_left_start_HP2);
 
-        $_70_30_right_start = $this->getStart($fileString, ".main_70-30_right");
-        $_70_30_right_end = $this->getEnd($fileString, $_70_30_right_start);
+        $_70_30_right_start_HP1 = $this->getStart($fileString, ".main_70-30_right_HP1");
+        $_70_30_right_end_HP1 = $this->getEnd($fileString, $_70_30_right_start_HP1);
+        $_70_30_right_start_HP2 = $this->getStart($fileString, ".main_70-30_right_HP2");
+        $_70_30_right_end_HP2 = $this->getEnd($fileString, $_70_30_right_start_HP2);
 
         // construct the output string (there is probably a better way to do this if there's a method to specify substr between 2 ints)
-        $editedNormalFileString = substr($fileString, 0, $_1ColumnStart) . $map['1spaltig_normal'] . substr($fileString, $_1ColumnEnd);
-        $editedNormalFileString = substr($editedNormalFileString, 0, $_50_50_left_start) . $map['2Spalten-50-50_main_links'] . substr($fileString, $_50_50_left_end);
-        $editedNormalFileString = substr($editedNormalFileString, 0, $_50_50_right_start) . $map['2Spalten-50-50_main_rechts'] . substr($fileString, $_50_50_right_end);
-        $editedNormalFileString = substr($editedNormalFileString, 0, $_30_70_left_start) . $map['2Spalten-30-70_main_links'] . substr($fileString, $_30_70_left_end);
-        $editedNormalFileString = substr($editedNormalFileString, 0, $_30_70_right_start) . $map['2Spalten-30-70_main_rechts'] . substr($fileString, $_30_70_right_end);
-        $editedNormalFileString = substr($editedNormalFileString, 0, $_70_30_left_start) . $map['2Spalten-70-30_main_links'] . substr($fileString, $_70_30_left_end);
-        $editedNormalFileString = substr($editedNormalFileString, 0, $_70_30_right_start) . $map['2Spalten-70-30_main_rechts'] . substr($fileString, $_70_30_right_end);
+        $editedNormalFileString = substr($fileString, 0, $_1ColumnStart_HP1) . $map['1spaltig_normal_homepage1'] . substr($fileString, $_1ColumnEnd_HP1);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_1ColumnStart_HP2) . $map['1spaltig_normal_homepage2'] . substr($fileString, $_1ColumnEnd_HP2);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_50_50_left_start_HP1) . $map['2Spalten-50-50_main_links_homepage1'] . substr($fileString, $_50_50_left_end_HP1);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_50_50_left_start_HP2) . $map['2Spalten-50-50_main_links_homepage2'] . substr($fileString, $_50_50_left_end_HP2);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_50_50_right_start_HP1) . $map['2Spalten-50-50_main_rechts_homepage1'] . substr($fileString, $_50_50_right_end_HP1);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_50_50_right_start_HP2) . $map['2Spalten-50-50_main_rechts_homepage2'] . substr($fileString, $_50_50_right_end_HP2);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_30_70_left_start_HP1) . $map['2Spalten-30-70_main_links_homepage1'] . substr($fileString, $_30_70_left_end_HP1);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_30_70_left_start_HP2) . $map['2Spalten-30-70_main_links_homepage2'] . substr($fileString, $_30_70_left_end_HP2);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_30_70_right_start_HP1) . $map['2Spalten-30-70_main_rechts_homepage1'] . substr($fileString, $_30_70_right_end_HP1);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_30_70_right_start_HP2) . $map['2Spalten-30-70_main_rechts_homepage2'] . substr($fileString, $_30_70_right_end_HP2);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_70_30_left_start_HP1) . $map['2Spalten-70-30_main_links_homepage1'] . substr($fileString, $_70_30_left_end_HP1);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_70_30_left_start_HP2) . $map['2Spalten-70-30_main_links_homepage2'] . substr($fileString, $_70_30_left_end_HP2);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_70_30_right_start_HP1) . $map['2Spalten-70-30_main_rechts_homepage1'] . substr($fileString, $_70_30_right_end_HP1);
+        $editedNormalFileString = substr($editedNormalFileString, 0, $_70_30_right_start_HP2) . $map['2Spalten-70-30_main_rechts_homepage2'] . substr($fileString, $_70_30_right_end_HP2);
 
 
 
@@ -491,7 +543,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         file_put_contents($path . "homepage2.css", $editedHP2FileString);
         file_put_contents($path . "normal.css", $editedNormalFileString);
 
-        $data = ['result' => 'Doing Ajax Stuff'];
+        $data = ['result' => $map];
         return $this->jsonResponse(json_encode($data));
     }
 
