@@ -55,6 +55,40 @@
                         </a>
                     </li>
 
+                    <li role="presentation" class="t3js-tabmenu-item nav-item">
+                        <a class="nav-link">
+                            <select id="textSizeOption" class="form-select form-control-adapt" onchange="changeTextSize()">
+                                <f:for each="{sizes}" as="size">
+                                    <f:if condition="{size} == {selectedSize}">
+                                        <f:then>
+                                            <option selected>{size}</option>
+                                        </f:then>
+                                        <f:else>
+                                            <option>{size}</option>
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
+                            </select>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="t3js-tabmenu-item nav-item">
+                        <a class="nav-link">
+                            <select id="textAlignmentOption" class="form-select form-control-adapt" onchange="changeTextAlignment()">
+                                <f:for each="{alignments}" as="align">
+                                    <f:if condition="{align} == {selectedAlign}">
+                                        <f:then>
+                                            <option selected>{align}</option>
+                                        </f:then>
+                                        <f:else>
+                                            <option>{align}</option>
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
+                            </select>
+                        </a>
+                    </li>
+
                     <button class="testButton">
                         Save
                     </button>
