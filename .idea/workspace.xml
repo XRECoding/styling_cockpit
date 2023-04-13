@@ -25,10 +25,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-Added Text Alignment &amp; Size to both Controller Actions&#10;-made Text Alignment &amp; Size in template respect the previous selection as default">
+    <list default="true" id="6f4b37b0-da04-4ffe-aa74-84126a3b13e5" name="Default Changelist" comment="-added functionality for different websites to use different settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Controller/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Public/JavaScript/Backend.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +127,10 @@
       <workItem from="1680555894601" duration="36000" />
       <workItem from="1680678098455" duration="847000" />
       <workItem from="1680679324949" duration="611000" />
-      <workItem from="1680780864171" duration="25604000" />
+      <workItem from="1680780864171" duration="26692000" />
+      <workItem from="1680869784336" duration="642000" />
+      <workItem from="1681232351388" duration="1729000" />
+      <workItem from="1681393839162" duration="829000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented Layout">
       <created>1673629991202</created>
@@ -249,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680536335360</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="-added functionality for different websites to use different settings">
+      <created>1680832657043</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1680832657043</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,7 +309,8 @@
     <MESSAGE value="-Added JS &amp; html for text size &amp; alignment" />
     <MESSAGE value="-Optimized the Ajax Action" />
     <MESSAGE value="-Added Text Alignment &amp; Size to both Controller Actions&#10;-made Text Alignment &amp; Size in template respect the previous selection as default" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added Text Alignment &amp; Size to both Controller Actions&#10;-made Text Alignment &amp; Size in template respect the previous selection as default" />
+    <MESSAGE value="-added functionality for different websites to use different settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="-added functionality for different websites to use different settings" />
   </component>
   <component name="WindowStateProjectService">
     <state x="716" y="112" width="1002" height="1023" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1673620437066">
@@ -311,10 +321,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1010" y="455" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1675063530354" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1680783623102">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1680869831369">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1680783623102" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1680869831369" />
     <state x="1146" y="598" key="Github.ShareDialog" timestamp="1673620331426">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -331,10 +341,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="987" y="402" key="RollbackChangesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1680823139702" />
-    <state x="781" y="345" key="SettingsEditor" timestamp="1680784624992">
+    <state x="781" y="345" key="SettingsEditor" timestamp="1681233196288">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1680784624992" />
+    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1681233196288" />
     <state x="872" y="433" key="Vcs.Push.Dialog.v2" timestamp="1680536351623">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

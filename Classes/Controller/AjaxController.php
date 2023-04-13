@@ -37,8 +37,8 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function indexAction(): \Psr\Http\Message\ResponseInterface
     {
-        $PageTSconfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($this->pObj->id);
-        $websiteID = $PageTSconfig['TSFE.']['constants.']['websiteConfig.'];
+//        $PageTSconfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($this->pObj->id);
+//        $websiteID = $PageTSconfig['TSFE.']['constants.']['websiteConfig.'];
 
         // getting current page ID
         $rootPageID = intVal($_GET['id']);
@@ -86,8 +86,8 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         $start = strpos($fileString, "body");
         $sizeSelector = strpos($fileString, "font-size:", $start);
-        $sizeStart = strpos($fileString, " ", $sizeSelector)+1;
 
+        $sizeStart = strpos($fileString, " ", $sizeSelector)+1;
         $sizeEnd = strpos($fileString, "px;", $sizeStart);
         $size = substr($fileString, $sizeStart, $sizeEnd - $sizeStart);
         $this->view->assign("selectedSize", $size);
@@ -534,7 +534,7 @@ class AjaxController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // write all the files to fileadmin
         if ($loadDefault){
             //change path to fileadmin path for saving if the default had to be loaded
-            $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID . "_";     // TODO include HP1/2
+            $path = dirname(__DIR__, 5) . "/fileadmin/typo3_template_baukasten/" . $rootPageID . "_";
         }
 
         file_put_contents($path . "header.css", $editedHeaderFileString);
